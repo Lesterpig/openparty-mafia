@@ -2,6 +2,9 @@ module.exports = function() {
 
   return {
 
+    name: "Mafioso",
+    desc: "Vous devez assassiner tous les innocents villageois...",
+
     actions: {
       choose: {
         isAvailable: function(player) {
@@ -13,7 +16,7 @@ module.exports = function() {
           submit:  "Voter",
         },
         execute: function(player, choice) {
-          player.room.message("mafia", "<strong>" + player.username + "</strong> vote <strong>" + choice.username);
+          player.room.message("mafia", "<strong>" + player.username + "</strong> vote <strong>" + choice.username + "</strong>");
           player.choice = choice;
 
           votes = 0;

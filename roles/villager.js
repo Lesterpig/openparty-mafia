@@ -2,6 +2,8 @@ module.exports = function() {
 
   return {
 
+    name: "Villager",
+
     actions: {
       choose: {
         isAvailable: function(player) {
