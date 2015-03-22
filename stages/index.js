@@ -4,8 +4,9 @@ module.exports = {
   init: function(room) {
     out = {};
 
-    out.mafia = new (require("./mafia.js"));
-    //out.vote  = new (require("./vote.js"));
+    out.mafia = new (require("./mafia"));
+    out.end   = new (require("./end"));
+    out.vote  = new (require("./vote.js"));
 
     (function(room) {
       room.openChannel = function(channel, role) {

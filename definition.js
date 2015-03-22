@@ -1,7 +1,9 @@
 'use strict';
 
-var roles  = require("./roles/index");
-var stages = require("./stages/index");
+var roles      = require("./roles/index");
+var stages     = require("./stages/index");
+var victory    = require("./lib/victory");
+var playerInfo = require("./lib/playerInfo");
 
 module.exports = function() {
 
@@ -9,7 +11,7 @@ module.exports = function() {
 
   this.name        = "Mafia";
   this.description = "Une version en ligne du jeu de Dmitry Davidoff";
-  this.minPlayers  = 1;
+  this.minPlayers  = 4;
   this.maxPlayers  = 40;
   this.opVersion   = ">=0.0.2";
   this.version     = "0.1.0";
@@ -17,6 +19,9 @@ module.exports = function() {
   // Start
   
   this.start = function(room, callback) {
+
+    victory.init(this);
+    playerInfo.init(this);
 
     try {
       this.roles  = roles.init(room);
@@ -31,7 +36,7 @@ module.exports = function() {
       room.message("<strong><i>Vous vous trouvez dans le village de Balakovo. La Mafia rôde, et menace sérieusement la vie des villageois...</i></strong>");
       room.message("<strong><i>La police locale pense que " + room.gameplay.parameters[0].value + " mafiosi sont parmis vous. Prenez garde !");
       room.nextStage("mafia");
-    }, 500);
+    }, 100);
 
   };
 
@@ -47,8 +52,11 @@ module.exports = function() {
   }
   ];
 
-  // Stages
+  // Disconnect
   
-  this.stages = {};
+  this.onDisconnect = function(room, player) {
+    if(room.gameplay.checkEnd)
+      room.gameplay.checkEnd();
+  }
 
 };
