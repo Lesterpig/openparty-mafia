@@ -10,13 +10,14 @@ module.exports = function() {
       room.gameplay.resetPlayerInfo();
       room.openChannel("mafia", "mafia");
 
-      callback(null, 10);
+      callback(null, 30);
     },
     end: function(room, callback) {
 
       var victim = votes.execute(room);
       if(victim) {
         victim.pendingDeath = "mafia";
+        room.message("mafia", "<strong class='mafia-mafia-chat'><i>La Mafia a décidé d'éliminer " + victim.username + "</i></strong>")
       }
       room.closeChannel("mafia", "mafia");
       if(!room.gameplay.checkEnd()) {

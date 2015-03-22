@@ -1,3 +1,10 @@
+/**
+ * MAIN DEFINITION FILE FOR OPENPARTY-MAFIA
+ * LICENSED UNDER GPLv3
+ *
+ * From the original idea of Dmitry Davidoff.
+ */
+
 'use strict';
 
 var roles      = require("./roles/index");
@@ -14,7 +21,9 @@ module.exports = function() {
   this.minPlayers  = 4;
   this.maxPlayers  = 40;
   this.opVersion   = ">=0.0.2";
-  this.version     = "0.1.0";
+  this.version     = "0.0.1";
+
+  this.css         = ["mafia.css"];
 
   // Start
   
@@ -55,8 +64,27 @@ module.exports = function() {
   // Disconnect
   
   this.onDisconnect = function(room, player) {
+
+    if(player.canonicalRole)
+      this.room.message("<strong><i>" + player.username + " (" + player.canonicalRole + ") s'est enfui.</i></strong>");
+
     if(room.gameplay.checkEnd)
       room.gameplay.checkEnd();
+  }
+
+  // Chat styles 
+  
+  this.processMessage = function(channel, message, player) {
+
+    if(channel === "dead") {
+      message = "<i class='mafia-dead-chat'>" + message + "</i>";
+    }
+
+    if(channel === "mafia") {
+      message = "<span class='mafia-mafia-chat'>" + message + "</span>";
+    }
+
+    return message;
   }
 
 };

@@ -12,7 +12,10 @@ module.exports = {
     room.gameplay.parameters.forEach(function(p) {
       
       if(p.value < 0)
-        throw new Error("Nombre invalide pour le rôle " + p.role);
+        throw new Error("Nombre invalide pour le rôle " + p.role + ".");
+
+      if(p.role === "mafia" && !p.value)
+        throw new Error("Vous devez avoir au moins un mafioso dans la partie.");
 
       roles[p.role] = p.value;
       sum += p.value;
@@ -38,6 +41,7 @@ module.exports = {
       p.player.setChannel("general", null);
       p.player.setRole("villager", rolesData.villager);
       p.player.emit("setGameInfo", "Vous êtes <strong>Villageois</strong>. Vous devez éliminer les membres de la Mafia.");
+      p.player.canonicalRole = "Villageois";
     });
 
     // Affect roles
@@ -47,6 +51,7 @@ module.exports = {
         var index = o.pop();
         room.players[index].player.setRole(r, rolesData[r]);
         room.players[index].player.emit("setGameInfo", "Vous êtes <strong>" + rolesData[r].name + "</strong>. " + rolesData[r].desc);
+        room.players[index].player.canonicalRole = rolesData[r].name;
       }
     }
 

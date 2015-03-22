@@ -27,7 +27,7 @@ module.exports = function() {
 
       room.openChannel("general", "villager");
 
-      callback(null, 10);
+      callback(null, 120);
     },
     end: function(room, callback) {
 

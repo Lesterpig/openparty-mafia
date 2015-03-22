@@ -7,7 +7,7 @@ module.exports = function() {
 
       // Allow everyone to speak
       room.players.forEach(function(p) {
-        p.player.setChannel("general", {r: true, w: true, n: "Géneral"});
+        p.player.setChannel("general", {r: true, w: true, n: "Général"});
       });
 
       callback(null, -1);
