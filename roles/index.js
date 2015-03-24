@@ -40,8 +40,8 @@ module.exports = {
     room.players.forEach(function(p) {
       p.player.setChannel("general", null);
       p.player.setRole("villager", rolesData.villager);
-      p.player.emit("setGameInfo", "Vous êtes <strong>Villageois</strong>. Vous devez éliminer les membres de la Mafia.");
-      p.player.canonicalRole = "Villageois";
+      p.player.canonicalRole = "<span class='label label-default'>Villageois</span>";
+      p.player.emit("setGameInfo", "Vous êtes "+ p.player.canonicalRole +". Vous devez éliminer les membres de la Mafia, mais vous n'avez aucun pouvoir spécifique.");
     });
 
     // Affect roles
@@ -50,8 +50,13 @@ module.exports = {
       for(var i = 0; i < roles[r]; i++) {
         var index = o.pop();
         room.players[index].player.setRole(r, rolesData[r]);
-        room.players[index].player.emit("setGameInfo", "Vous êtes <strong>" + rolesData[r].name + "</strong>. " + rolesData[r].desc);
-        room.players[index].player.canonicalRole = rolesData[r].name;
+        
+        var c = "primary";
+        if(r === "mafia")
+          c = "danger";
+
+        room.players[index].player.canonicalRole = "<span class='label label-"+c+"'>" + rolesData[r].name + "</span>";
+        room.players[index].player.emit("setGameInfo", "Vous êtes "+ room.players[index].player.canonicalRole +". " + rolesData[r].desc);
       }
     }
 
