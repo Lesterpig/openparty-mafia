@@ -67,6 +67,13 @@ module.exports = function() {
     value: 0,
     help: "Un médecin peut protéger un citoyen par nuit s'il le souhaite. Si le protégé est attaqué par la Mafia, il survivra.",
     role: "doctor"
+  },
+  {
+    name: "Nombre de Vigiles",
+    type: Number,
+    value: 0,
+    help: "Un vigile peut assassiner un des habitants durant une nuit de son choix. Il est toutefois du côté des honnêtes citoyens.",
+    role: "vigilant"
   }
   ];
 

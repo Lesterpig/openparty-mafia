@@ -9,7 +9,10 @@ module.exports = function() {
       
       var dead = 0;
       room.players.forEach(function(p) {
-        if(p.player.pendingDeath && !p.player.isSafeByDoc) { // TODO move this in doctor.js ?
+        if(p.player.isSafeByDoc) { // TODO move this in doctor.js ?
+          p.player.pendingDeath.pop(); // remove one element only! 
+        }
+        if(p.player.pendingDeath.length > 0) {
           dead++;
           var deathPlace = deathPlaces[GET_RANDOM(0, deathPlaces.length-1)];
           room.message("<strong><i>✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé assassiné "+ deathPlace +"...</i></strong>");

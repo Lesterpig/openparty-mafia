@@ -4,6 +4,12 @@ module.exports = function() {
 
   return {
     start: function(room, callback) {
+
+      // Reset pending death
+      room.players.forEach(function(p) {
+        p.player.pendingDeath = [];
+      });
+
       room.message("<h3>Une nouvelle nuit tombe sur le village.</h3>");
       room.message("<strong><i>Tandis que les villageois dorment paisiblement, la Mafia passe à l'action.</i></strong>");
 
@@ -16,7 +22,7 @@ module.exports = function() {
 
       var victim = votes.execute(room);
       if(victim) {
-        victim.pendingDeath = "mafia";
+        victim.pendingDeath.push("mafia");
         room.message("mafia", "<strong class='mafia-mafia-chat'><i>La Mafia a décidé d'éliminer " + victim.username + "</i></strong>")
       }
       room.closeChannel("mafia", "mafia");
