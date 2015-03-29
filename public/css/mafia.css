@@ -10,3 +10,16 @@
 font-size: 12px;
 font-style: italic;
 }
+
+.tour_spes {
+  padding: 3px;
+  border-width: 1px;
+  border-style: solid;
+  margin-bottom: 3px;
+  margin-right: 0px;
+  margin-top: 3px;
+  border-radius: 4px;
+  background-color: #337AB7;
+  color: #05247E;
+}
+
