@@ -11,7 +11,7 @@ module.exports = function() {
       });
 
       room.message("<h3>Une nouvelle nuit tombe sur le village.</h3>");
-      room.message("<strong><i>Tandis que les villageois dorment paisiblement, la Mafia passe à l'action.</i></strong>");
+      room.message("<div class='tour_mafia'><strong><i>Tandis que les villageois dorment paisiblement, la Mafia passe à l'action.</i></strong></div>");
 
       room.gameplay.resetPlayerInfo();
       room.openChannel("mafia", "mafia");
@@ -23,8 +23,10 @@ module.exports = function() {
       var victim = votes.execute(room);
       if(victim) {
         victim.pendingDeath.push("mafia");
-        room.message("mafia", "<strong class='mafia-mafia-chat'><i>La Mafia a décidé d'éliminer " + victim.username + "</i></strong>")
-      }
+        room.message("mafia", "<br /><div class='tour_mafia'><strong><i>La Mafia a décidé d'éliminer " + victim.username + "</i></strong></div>")
+      } else {
+		  room.message("mafia", "<br /><div class='tour_mafia'><strong><i>Les mafiosi ne se mettent pas d'accord et n'éliminent personne.</i></strong></div>")
+	  }
       room.closeChannel("mafia", "mafia");
       if(!room.gameplay.checkEnd()) {
         room.nextStage("vote");

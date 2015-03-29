@@ -26,7 +26,7 @@ module.exports = function() {
   this.css         = ["mafia.css"];
 
   // Start
-  
+
   this.start = function(room, callback) {
 
     victory.init(this);
@@ -43,16 +43,21 @@ module.exports = function() {
 
     setTimeout(function() {
       var nbMafio  = room.gameplay.parameters[0].value;
-      var mafioStr = (nbMafio > 1 ? "mafiosi" : "mafioso"); 
-      room.message("<strong><i>Vous vous trouvez dans le village de Salem. La Mafia rôde, et menace sérieusement la vie des villageois...</i></strong>");
-      room.message("<strong><i>La police locale pense que " + nbMafio + " " + mafioStr + " sont parmis vous. Prenez garde !");
+	  var mafioStr = (nbMafio > 1 ? "mafiosi sont" : "mafioso est");
+	  var nbDoc = room.gameplay.parameters[1].value;
+      var docStr = (nbDoc > 1 ? "docteurs" :  "docteur");
+	  var nbVigile = room.gameplay.parameters[2].value;
+	  var vigileStr = (nbVigile > 1 ? "vigiles" : "vigile")
+	  room.message("<strong><i>Vous vous trouvez dans le village de Salem. La Mafia rôde, et menace sérieusement la vie des villageois...</i></strong>");
+      room.message("<strong><i>La police locale pense que " + nbMafio + " " + mafioStr + " parmi vous. Prenez garde !</strong></i>");
+	  room.message("<strong><i>Pour aider les innocents, il y a " + nbDoc + " " + docStr + " et " + nbVigile + " " + vigileStr + ".")
       room.nextStage("mafia");
     }, 100);
 
   };
 
   // Parameters
-  
+
   this.parameters = [
   {
     name: "Nombre de Mafiosi",
@@ -78,7 +83,7 @@ module.exports = function() {
   ];
 
   // Disconnect
-  
+
   this.onDisconnect = function(room, player) {
 
     if(player.canonicalRole)
@@ -88,8 +93,8 @@ module.exports = function() {
       room.gameplay.checkEnd();
   }
 
-  // Chat styles 
-  
+  // Chat styles
+
   this.processMessage = function(channel, message, player) {
 
     if(channel === "dead") {

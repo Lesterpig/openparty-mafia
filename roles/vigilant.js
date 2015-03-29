@@ -11,7 +11,7 @@ module.exports = function() {
         return player.room.currentStage === "mafia" && !player.roles.dead && !player.vigilantHasPlayed;
       },
       type: "select",
-      options: require("../lib/actions").getPlayerSelectOptions("Protéger"),
+      options: require("../lib/actions").getPlayerSelectOptions("Assassiner"),
       execute: function(player, choice) {
         choice = player.room.resolveUsername(choice);
         if(!choice || player === choice.player)
@@ -20,7 +20,7 @@ module.exports = function() {
         player.vigilantHasPlayed = true;
         choice.player.pendingDeath.push("vigilant");
         player.sendAvailableActions();
-        player.message("<strong><i>Vous avez décidé d'assassiner "+ choice.username +" cette nuit.</i></strong>");
+        player.message("<div class='tour_spes'><strong><i>Vous avez décidé d'assassiner "+ choice.username +" cette nuit.</i></strong></div>");
 
       }
     }
