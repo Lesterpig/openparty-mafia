@@ -5,3 +5,28 @@
 .mafia-mafia-chat {
     color: darkred;
 }
+
+.vote{
+  color:#CFE8F5;
+}
+
+.tour_spes{
+  padding: 3px;
+  border-width: 1px;
+  border-style: solid;
+  margin-bottom: 3px;
+  margin-right: 0px;
+  margin-top: 3px;
+  border-radius: 4px;
+  background-color: #337AB7;
+  color: #05247E;
+}
+
+.tour_mafia{
+  border-width: 1px;
+  border-style: solid;
+  padding: 3px;
+  background-color: #D9534F;
+  border-radius: 4px;
+  color: #7E0505;
+}
