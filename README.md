@@ -1,6 +1,8 @@
 openparty-mafia
 ===============
 
+[![Join the chat at https://gitter.im/Lesterpig/openparty-mafia](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Lesterpig/openparty-mafia?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A french openparty extension for [Mafia](http://en.wikipedia.org/wiki/Mafia_%28party_game%29) role game.
 
 Status
