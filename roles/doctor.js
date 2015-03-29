@@ -20,7 +20,7 @@ module.exports = function() {
         player.docHasPlayed = true; // reset at dusk
         choice.player.isSafeByDoc  = true; // reset at dusk
         player.sendAvailableActions();
-        player.message("<div class="tour_spes">[Privé]<strong><i>"+ choice.username +" est protégé de la mort pour cette nuit.</i></strong></div>");
+        player.message("<div class="tour_spes"><strong>[Privé] <i>"+ choice.username +" est protégé de la mort pour cette nuit.</i></strong></div>");
 
       }
     }
