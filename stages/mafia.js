@@ -11,7 +11,7 @@ module.exports = function() {
       });
 
       room.message("<h3>Une nouvelle nuit tombe sur le village.</h3>");
-      room.message("<div class="tour_spes"><strong><i>Le docteur va pouvoir protéger quelqu'un.<br />Le vigile peut choisir d'assassiner un joueur.</div></i></strong>")
+      room.message("<div class='tour_spes'><strong><i>Le docteur va pouvoir protéger quelqu'un.<br />Le vigile peut choisir d'assassiner un joueur.</div></i></strong>")
       room.message("<strong><i>Tandis que les villageois dorment paisiblement, la Mafia passe à l'action.</i></strong>");
 
       room.gameplay.resetPlayerInfo();
