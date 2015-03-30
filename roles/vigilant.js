@@ -20,7 +20,7 @@ module.exports = function() {
         player.vigilantHasPlayed = true;
         choice.player.pendingDeath.push("vigilant");
         player.sendAvailableActions();
-        player.message("<strong><i>Vous avez décidé d'assassiner "+ choice.username +" cette nuit.</i></strong>");
+        player.message("<div class='tour_spes'><strong>[Privé] <i>Vous avez décidé d'assassiner "+ choice.username +" cette nuit.</i></strong></div>");
 
       }
     }
