@@ -1,16 +1,18 @@
 var votes = require("../lib/votes");
 var deathPlaces = require("../data/deathPlaces.json");
 
+var MAX_DURATION = 360; // 6 minutes
+
 module.exports = function() {
 
   return {
     start: function(room, callback) {
       room.message("<h3>Le jour se lève sur le village</h3>");
-      
+
       var dead = 0;
       room.players.forEach(function(p) {
         if(p.player.isSafeByDoc) { // TODO move this in doctor.js ?
-          p.player.pendingDeath.pop(); // remove one element only! 
+          p.player.pendingDeath.pop(); // remove one element only!
         }
         if(p.player.pendingDeath.length > 0) {
           dead++;
@@ -32,27 +34,34 @@ module.exports = function() {
 
       room.openChannel("general", "villager");
 
-      callback(null, 120);
+      var duration = 30 * room.gameplay.nbAlive("villager");
+      if(duration > MAX_DURATION) {
+        duration = MAX_DURATION;
+      }
+
+      callback(null, duration);
     },
     end: function(room, callback) {
 
       var victim = votes.execute(room);
-      
+
       if(victim) {
         room.message("<strong><i>Le village a décidé de lyncher " + victim.username + " " + victim.canonicalRole + ".</i></strong>");
         room.gameplay.kill(victim);
       }
 
       room.closeChannel("general", "villager");
+
+      // Reset some variables
+      room.players.forEach(function(p) {
+        p.player.isSafeByDoc  = false; // TODO
+        p.player.docHasPlayed = false; // Move this in doctor.js ?
+        p.player.vigilantHasPlayed = false; // (or create an event emitter !)
+      });
+
       if(!room.gameplay.checkEnd()) {
         room.nextStage("mafia");
       }
-
-      // Reset some variables 
-      room.players.forEach(function(p) {
-        p.player.isSafeByDoc  = false; // TODO 
-        p.player.docHasPlayed = false; // Move this in doctor.js ?
-      });
 
     }
   }

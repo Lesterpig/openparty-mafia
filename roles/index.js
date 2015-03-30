@@ -10,7 +10,7 @@ module.exports = {
     var sum = 0;
 
     room.gameplay.parameters.forEach(function(p) {
-      
+
       if(p.value < 0)
         throw new Error("Nombre invalide pour le rôle " + p.role + ".");
 
@@ -23,7 +23,7 @@ module.exports = {
 
     if(sum > room.players.length)
       throw new Error("Trop de rôles par rapport au nombre de joueurs.");
-    
+
     // Suffle player list
     var o = [];
     for(var i = 0; i < room.players.length; i++) {
@@ -50,7 +50,7 @@ module.exports = {
       for(var i = 0; i < roles[r]; i++) {
         var index = o.pop();
         room.players[index].player.setRole(r, rolesData[r]);
-        
+
         var c = "primary";
         if(r === "mafia")
           c = "danger";
