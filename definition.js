@@ -43,7 +43,7 @@ module.exports = function() {
 
     setTimeout(function() {
       var nbMafio  = room.gameplay.parameters[0].value;
-      var mafioStr = (nbMafio > 1 ? "mafiosi est" : "mafioso sont");
+      var mafioStr = (nbMafio > 1 ? "mafiosi sont" : "mafioso est");
       room.message("<strong><i>Vous vous trouvez dans le village de Salem. La Mafia rôde, et menace sérieusement la vie des villageois...</i></strong>");
       room.message("<strong><i>La police locale pense que " + nbMafio + " " + mafioStr + " parmi vous. Prenez garde !");
       room.nextStage("mafia");
