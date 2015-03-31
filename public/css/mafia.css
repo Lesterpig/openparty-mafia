@@ -3,32 +3,32 @@
 }
 
 .mafia-mafia-chat {
-	color: #7E0505;
+  color: #7E0505;
 }
 
 .vote {
-	font-size: 12px;
-	font-style: italic;
+  font-size: 12px;
+  font-style: italic;
 }
 
 .tour_spes {
-	padding: 3px;
-	border-width: 1px;
-	border-style: solid;
-	border-radius: 4px;
-	background-color: #337AB7;
-	color: #05247E;
+  padding: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  background-color: #337AB7;
+  color: #05247E;
 }
 
 .tour_mafia {
-	padding: 3px;
-	border-width: 1px;
-	border-style: solid;
-	border-radius: 4px;	
-	background-color: #D9534F;
-	color: #7E0505;
+  padding: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px; 
+  background-color: #D9534F;
+  color: #7E0505;
 }
 
 .annonce_mort {
-	font-variant: small-caps;
+  font-variant: small-caps;
 }

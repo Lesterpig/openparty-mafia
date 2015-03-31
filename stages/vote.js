@@ -7,6 +7,7 @@ module.exports = function() {
 
   return {
     start: function(room, callback) {
+
       room.message("<h3>Le jour se lève sur le village.</h3>");
 
       var dead = 0;
@@ -49,8 +50,8 @@ module.exports = function() {
         room.message("<span class='annonce_mort'><strong><i>Le village a décidé de lyncher " + victim.username + " " + victim.canonicalRole + ".</i></strong></span>");
         room.gameplay.kill(victim);
       } else {
-			room.message("<span class='annonce_mort'><strong><i>Indécis, le village choisit de n'éliminer personne ... pour l'instant.</i></strong>");
-	  }
+      room.message("<span class='annonce_mort'><strong><i>Indécis, le village choisit de n'éliminer personne ... pour l'instant.</i></strong>");
+    }
 
       room.closeChannel("general", "villager");
 

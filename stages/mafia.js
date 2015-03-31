@@ -25,8 +25,8 @@ module.exports = function() {
         victim.pendingDeath.push("mafia");
         room.message("mafia", "<br /><div class='tour_mafia'><strong><i>La Mafia a décidé d'éliminer " + victim.username + "</i></strong></div>")
       } else {
-		  room.message("mafia", "<br /><div class='tour_mafia'><strong><i>Les mafiosi ne se mettent pas d'accord et n'éliminent personne.</i></strong></div>")
-	  }
+        room.message("mafia", "<br /><div class='tour_mafia'><strong><i>Les mafiosi ne se mettent pas d'accord et n'éliminent personne.</i></strong></div>")
+      }
       room.closeChannel("mafia", "mafia");
       if(!room.gameplay.checkEnd()) {
         room.nextStage("vote");
