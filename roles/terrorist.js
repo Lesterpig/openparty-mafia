@@ -8,7 +8,7 @@ module.exports = function() {
   actions: {
     protect: {
       isAvailable: function(player) {
-        return !player.roles.dead;
+        return player.room.currentStage === "mafia" && !player.roles.dead;
       },
       type: "select",
       options: require("../lib/actions").getPlayerSelectOptions("Attentat"),
@@ -19,6 +19,8 @@ module.exports = function() {
 
         choice.player.pendingDeath.push("terrorist");
         player.pendingDeath.push("terrorist");
+        choice.player.isTargetedByTerror = true;
+        choice.player.killer = player;
         player.sendAvailableActions();
         player.message("<div class='tour_spes'><strong><i>Boum ! Vous avez décidé d'emporter "+ choice.username +" dans votre mort.</i></strong></div>");
 

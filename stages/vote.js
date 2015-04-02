@@ -15,6 +15,9 @@ module.exports = function() {
         if(p.player.isSafeByDoc) { // TODO move this in doctor.js ?
           p.player.pendingDeath.pop(); // remove one element only!
         }
+        if(p.player.isTargetedByTerror && p.player.killer.isSafeByDoc) { // Si le terroriste est protégé, alors sa victime ne meurt pas
+          p.player.pendingDeath.pop();
+        }
         if(p.player.pendingDeath.length > 0) {
           dead++;
           var deathPlace = deathPlaces[GET_RANDOM(0, deathPlaces.length-1)];
