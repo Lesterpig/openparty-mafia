@@ -3,7 +3,7 @@ module.exports = function() {
   return {
 
   name: "Docteur",
-  desc: "Vous pouvez protéger quelqu'un contre la mafia <strong>chaque nuit</strong>, sauf vous-même. Vous devez aider les villageois à repousser la Mafia...",
+  desc: "Vous pouvez protéger quelqu'un <strong>chaque nuit</strong>, sauf vous-même. Vous devez aider les villageois à repousser la Mafia...",
 
   actions: {
     protect: {
