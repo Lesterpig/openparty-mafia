@@ -33,6 +33,7 @@ module.exports = function() {
         return;
       }
 
+      room.message("<span class='annonce_mort'>Les habitants du village ont la possibilité d'éliminer un suspect lors d'un vote.</span>");
       room.openChannel("general", "villager");
 
       var duration = 30 * room.gameplay.nbAlive("villager");
