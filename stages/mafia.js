@@ -15,6 +15,7 @@ module.exports = function() {
 
       room.gameplay.resetPlayerInfo();
       room.openChannel("mafia", "mafia");
+      room.openChannel("mafia", "godfather");
 
       callback(null, 30);
     },
@@ -28,6 +29,7 @@ module.exports = function() {
         room.message("mafia", "<br /><div class='tour_mafia'><strong><i>Les mafiosi ne se mettent pas d'accord et n'éliminent personne.</i></strong></div>")
       }
       room.closeChannel("mafia", "mafia");
+      room.closeChannel("mafia", "godfather");
       if(!room.gameplay.checkEnd()) {
         room.nextStage("vote");
       }

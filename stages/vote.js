@@ -36,6 +36,7 @@ module.exports = function() {
         return;
       }
 
+      room.message("<span class='annonce_mort'><strong><i>Les habitants du village ont la possibilité d'éliminer un suspect lors d'un vote.</i></strong></span>");
       room.openChannel("general", "villager");
 
       var duration = 30 * room.gameplay.nbAlive("villager");
@@ -63,6 +64,7 @@ module.exports = function() {
         p.player.isSafeByDoc  = false; // TODO
         p.player.docHasPlayed = false; // Move this in doctor.js ?
         p.player.vigilantHasPlayed = false; // (or create an event emitter !)
+        p.player.detectHasPlayed = false;
       });
 
       if(!room.gameplay.checkEnd()) {
