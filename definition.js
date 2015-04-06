@@ -80,7 +80,7 @@ module.exports = function() {
     name: "Nombre de Parrains (mafia)",
     type: Number,
     value: 0,
-    help: "Un parrain fait parti du camp de la mafia mais apparait comme un innocent aux yeux du détective.",
+    help: "Un parrain fait partie du camp de la mafia mais apparait comme un innocent aux yeux du détective.",
     role: "godfather"
   },
   {
