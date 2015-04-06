@@ -70,11 +70,25 @@ module.exports = function() {
 
   this.parameters = [
   {
-    name: "Nombre de Mafiosi",
+    name: "Nombre de Mafiosi (mafia)",
     type: Number,
     value: 1,
     help: "Les Mafiosi ont pour objectif de prendre le contrôle du village. Ensemble, ils décident d'éliminer un citoyen par nuit.",
     role: "mafia"
+  },
+  {
+    name: "Nombre de Parrains (mafia)",
+    type: Number,
+    value: 0,
+    help: "Un parrain fait parti du camp de la mafia mais apparait comme un innocent aux yeux du détective.",
+    role: "godfather"
+  },
+  {
+    name: "Nombre de Terroristes (mafia)",
+    type: Number,
+    value: 0,
+    help: "Un terroriste peut commettre un attentat suicide durant une nuit de son choix. Il mourra avec la cible de son choix. Le docteur ne protège pas contre l'attentat; mais empêchera un terroriste d'agir s'il protège celui-ci pendant la nuit.",
+    role: "terrorist"
   },
   {
     name: "Nombre de Docteurs",
@@ -91,25 +105,11 @@ module.exports = function() {
     role: "vigilant"
   },
   {
-    name: "Nombre de Terroristes",
-    type: Number,
-    value: 0,
-    help: "Un terroriste peut commettre un attentat suicide durant une nuit de son choix. Il mourra avec la cible de son choix. Le docteur ne protège pas contre l'attentat; mais empêchera un terroriste d'agir s'il protège celui-ci pendant la nuit.",
-    role: "terrorist"
-  },
-  {
     name: "Nombre de Détectives",
     type: Number,
     value: 0,
     help: "Un détective peut découvrir, chaque nuit, le camp d'un joueur (innocent ou mafioso).",
     role: "detective"
-  },
-  {
-    name: "Nombre de Parrains",
-    type: Number,
-    value: 0,
-    help: "Un parrain fait parti du camp de la mafia mais apparait comme un innocent aux yeux du détective.",
-    role: "godfather"
   }
   ];
 
