@@ -52,7 +52,7 @@ module.exports = {
         room.players[index].player.setRole(r, rolesData[r]);
 
         var c = "primary";
-        if(r === "mafia")
+        if(r === "mafia" || r === "godfather")
           c = "danger";
 
         room.players[index].player.canonicalRole = "<span class='label label-"+c+"'>" + rolesData[r].name + "</span>";
