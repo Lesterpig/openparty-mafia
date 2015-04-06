@@ -4,6 +4,7 @@ module.exports = function() {
 
   name: "Vigile",
   desc: "Vous pouvez assassiner un des habitants durant une nuit de votre choix; mais gardez à l'esprit que vous devez aider les villageois à repousser la Mafia...",
+  side: "village",
 
   actions: {
     protect: {
@@ -18,14 +19,22 @@ module.exports = function() {
           return;
 
         player.vigilantHasPlayed = true;
-        choice.player.pendingDeath.push("vigilant");
+        choice.player.pendingDeath.push({type: "vigilant"});
         player.sendAvailableActions();
         player.message("<div class='tour_spes'><strong><i>Vous avez décidé d'assassiner "+ choice.username +" cette nuit.</i></strong></div>");
 
       }
     }
   },
-  channels: {}
+  channels: {},
+
+  beforeAll: function(room) {
+    room.gameplay.events.on("afterDusk", function() {
+      room.players.forEach(function(p) {
+        p.player.vigilantHasPlayed = false;
+      });
+    });
+  }
 
   }
 

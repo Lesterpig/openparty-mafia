@@ -7,6 +7,8 @@
 
 'use strict';
 
+var Emitter = require("events").EventEmitter;
+
 var roles      = require("./roles/index");
 var stages     = require("./stages/index");
 var victory    = require("./lib/victory");
@@ -33,6 +35,7 @@ module.exports = function() {
     playerInfo.init(this);
 
     try {
+      room.gameplay.events = new Emitter();
       this.roles  = roles.init(room);
       this.stages = stages.init(room);
     } catch(e) {
@@ -41,6 +44,7 @@ module.exports = function() {
 
     callback(null);
 
+    // TODO See #16
     setTimeout(function() {
       var nbMafio    = room.gameplay.parameters[0].value;
       var mafioStr   = (nbMafio > 1 ? "mafiosi sont" : "mafioso est");
@@ -55,8 +59,8 @@ module.exports = function() {
       var nbParrain  = room.gameplay.parameters[5].value;
       var parrainStr = (nbParrain > 1 ? "parrains" : "parrain");
       room.message("<strong><i>Vous vous trouvez dans le village de Salem. La Mafia rôde, et menace sérieusement la vie des villageois...</i></strong>");
-      room.message("<strong><i>La police locale pense que " + nbMafio + " " + mafioStr + " parmi vous, ainsi que " + nbParrain + " " + parrainStr + ". Prenez garde !</strong></i>");
-      room.message("<strong><i>Pour aider les innocents, il y a " + nbDoc + " " + docStr + ", " + nbVigile + " " + vigileStr + ", " + nbTerror + " " + terrorStr + " et " + nbDetect + " " + detectStr + ".")
+      room.message("<strong><i>La police locale pense que " + nbMafio + " " + mafioStr + " parmi vous, " + nbTerror + " " + terrorStr + ", ainsi que " + nbParrain + " " + parrainStr + ". Prenez garde !</strong></i>");
+      room.message("<strong><i>Pour aider les innocents, il y a " + nbDoc + " " + docStr + ", " + nbVigile + " " + vigileStr + " et " + nbDetect + " " + detectStr + ".")
       room.nextStage("mafia");
     }, 100);
 
@@ -90,7 +94,7 @@ module.exports = function() {
     name: "Nombre de Terroristes",
     type: Number,
     value: 0,
-    help: "Un terroriste peut commettre un attentat suicide durant une nuit de son choix. Il mourra avec la cible de son choix.",
+    help: "Un terroriste peut commettre un attentat suicide durant une nuit de son choix. Il mourra avec la cible de son choix. Le docteur ne protège pas contre l'attentat; mais empêchera un terroriste d'agir s'il protège celui-ci pendant la nuit.",
     role: "terrorist"
   },
   {

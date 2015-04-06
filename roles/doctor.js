@@ -4,6 +4,7 @@ module.exports = function() {
 
   name: "Docteur",
   desc: "Vous pouvez protéger quelqu'un <strong>chaque nuit</strong>, sauf vous-même. Vous devez aider les villageois à repousser la Mafia...",
+  side: "village",
 
   actions: {
     protect: {
@@ -17,15 +18,31 @@ module.exports = function() {
         if(!choice || player === choice.player)
           return;
 
-        player.docHasPlayed = true; // reset at dusk
-        choice.player.isSafeByDoc  = true; // reset at dusk
+        player.docHasPlayed = true;
+        choice.player.isSafeByDoc  = true;
         player.sendAvailableActions();
         player.message("<div class='tour_spes'><strong><i>"+ choice.username +" est protégé de la mort pour cette nuit.</i></strong></div>");
 
       }
     }
   },
-  channels: {}
+  channels: {},
+
+  beforeAll: function(room) {
+    room.gameplay.events.on("beforeDawn", function() {
+      room.players.forEach(function(p) {
+        if(p.player.isSafeByDoc && p.player.pendingDeath)
+          p.player.pendingDeath.pop();
+      });
+    });
+
+    room.gameplay.events.on("afterDusk", function() {
+      room.players.forEach(function(p) {
+        p.player.isSafeByDoc  = false;
+        p.player.docHasPlayed = false;
+      });
+    });
+  }
 
   }
 

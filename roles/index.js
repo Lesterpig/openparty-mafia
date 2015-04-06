@@ -47,12 +47,16 @@ module.exports = {
     // Affect roles
     for(var r in roles) {
       rolesData[r] = require("./" + r)();
+
+      if(rolesData[r].beforeAll)
+        rolesData[r].beforeAll(room);
+
       for(var i = 0; i < roles[r]; i++) {
         var index = o.pop();
         room.players[index].player.setRole(r, rolesData[r]);
 
         var c = "primary";
-        if(r === "mafia" || r === "godfather")
+        if(rolesData[r].side === "mafia")
           c = "danger";
 
         room.players[index].player.canonicalRole = "<span class='label label-"+c+"'>" + rolesData[r].name + "</span>";

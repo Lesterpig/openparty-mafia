@@ -10,14 +10,12 @@ module.exports = function() {
 
       room.message("<h3>Le jour se lève sur le village.</h3>");
 
+      room.gameplay.events.emit("beforeDawn");
+      room.gameplay.events.emit("beforeDawn1");
+      room.gameplay.events.emit("beforeDawn2");
+
       var dead = 0;
       room.players.forEach(function(p) {
-        if(p.player.isSafeByDoc) { // TODO move this in doctor.js ?
-          p.player.pendingDeath.pop(); // remove one element only!
-        }
-        if(p.player.isTargetedByTerror && p.player.killer.isSafeByDoc) { // Si le terroriste est protégé, alors sa victime ne meurt pas
-          p.player.pendingDeath.pop();
-        }
         if(p.player.pendingDeath.length > 0) {
           dead++;
           var deathPlace = deathPlaces[GET_RANDOM(0, deathPlaces.length-1)];
@@ -36,6 +34,8 @@ module.exports = function() {
         return;
       }
 
+      room.gameplay.events.emit("afterDawn");
+
       room.message("<span class='annonce_mort'><strong><i>Les habitants du village ont la possibilité d'éliminer un suspect lors d'un vote.</i></strong></span>");
       room.openChannel("general", "villager");
 
@@ -48,24 +48,19 @@ module.exports = function() {
     },
     end: function(room, callback) {
 
+      room.gameplay.events.emit("beforeDusk");
+
       var victim = votes.execute(room);
 
       if(victim) {
         room.message("<span class='annonce_mort'><strong><i>Le village a décidé de lyncher " + victim.username + " " + victim.canonicalRole + ".</i></strong></span>");
         room.gameplay.kill(victim);
       } else {
-      room.message("<span class='annonce_mort'><strong><i>Indécis, le village choisit de n'éliminer personne ... pour l'instant.</i></strong>");
-    }
+        room.message("<span class='annonce_mort'><strong><i>Indécis, le village choisit de n'éliminer personne ... pour l'instant.</i></strong>");
+      }
 
       room.closeChannel("general", "villager");
-
-      // Reset some variables
-      room.players.forEach(function(p) {
-        p.player.isSafeByDoc  = false; // TODO
-        p.player.docHasPlayed = false; // Move this in doctor.js ?
-        p.player.vigilantHasPlayed = false; // (or create an event emitter !)
-        p.player.detectHasPlayed = false;
-      });
+      room.gameplay.events.emit("afterDusk");
 
       if(!room.gameplay.checkEnd()) {
         room.nextStage("mafia");

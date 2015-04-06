@@ -6,6 +6,7 @@ module.exports = function() {
 
     name: "Mafioso",
     desc: "Vous devez assassiner tous les innocents villageois...",
+    side: "mafia",
 
     actions: {
       vote: votes.getVoteAction("mafia", "mafia")

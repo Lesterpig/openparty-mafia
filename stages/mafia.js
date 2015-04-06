@@ -17,13 +17,15 @@ module.exports = function() {
       room.openChannel("mafia", "mafia");
       room.openChannel("mafia", "godfather");
 
+      room.gameplay.events.emit("mafiaTurn");
+
       callback(null, 30);
     },
     end: function(room, callback) {
 
       var victim = votes.execute(room);
       if(victim) {
-        victim.pendingDeath.push("mafia");
+        victim.pendingDeath.push({type: "mafia"});
         room.message("mafia", "<br /><div class='tour_mafia'><strong><i>La Mafia a décidé d'éliminer " + victim.username + "</i></strong></div>")
       } else {
         room.message("mafia", "<br /><div class='tour_mafia'><strong><i>Les mafiosi ne se mettent pas d'accord et n'éliminent personne.</i></strong></div>")

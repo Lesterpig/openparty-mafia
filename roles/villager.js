@@ -5,6 +5,7 @@ module.exports = function() {
   return {
 
     name: "Villager",
+    side: "village",
 
     actions: {
       vote: votes.getVoteAction("", "vote")

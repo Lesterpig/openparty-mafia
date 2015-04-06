@@ -1,6 +1,5 @@
 module.exports = {
 
-
   init: function(room) {
     out = {};
 
@@ -24,6 +23,7 @@ module.exports = {
           p.player.sendWriteChannels();
         });
       };
+
     })(room);
 
     return out;
