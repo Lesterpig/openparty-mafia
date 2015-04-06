@@ -48,15 +48,15 @@ module.exports = function() {
     setTimeout(function() {
       var nbMafio    = room.gameplay.parameters[0].value;
       var mafioStr   = (nbMafio > 1 ? "mafiosi sont" : "mafioso est");
-      var nbDoc      = room.gameplay.parameters[1].value;
+      var nbDoc      = room.gameplay.parameters[3].value;
       var docStr     = (nbDoc > 1 ? "docteurs" :  "docteur");
-      var nbVigile   = room.gameplay.parameters[2].value;
+      var nbVigile   = room.gameplay.parameters[4].value;
       var vigileStr  = (nbVigile > 1 ? "vigiles" : "vigile");
-      var nbTerror   = room.gameplay.parameters[3].value;
+      var nbTerror   = room.gameplay.parameters[2].value;
       var terrorStr  = (nbTerror > 1 ? "terroristes" : "terroriste");
-      var nbDetect   = room.gameplay.parameters[4].value;
+      var nbDetect   = room.gameplay.parameters[5].value;
       var detectStr  = (nbDetect > 1 ? "détectives" : "detective");
-      var nbParrain  = room.gameplay.parameters[5].value;
+      var nbParrain  = room.gameplay.parameters[1].value;
       var parrainStr = (nbParrain > 1 ? "parrains" : "parrain");
       room.message("<strong><i>Vous vous trouvez dans le village de Salem. La Mafia rôde, et menace sérieusement la vie des villageois...</i></strong>");
       room.message("<strong><i>La police locale pense que " + nbMafio + " " + mafioStr + " parmi vous, " + nbTerror + " " + terrorStr + ", ainsi que " + nbParrain + " " + parrainStr + ". Prenez garde !</strong></i>");
