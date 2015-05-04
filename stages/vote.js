@@ -8,7 +8,7 @@ module.exports = function() {
   return {
     start: function(room, callback) {
 
-      room.message("<h3>Le jour se lève sur le village.</h3>");
+      room.message("<div class='mafia-day-transition'><span class='glyphicon glyphicon-bell'></span> Un nouveau jour se lève...</div>");
 
       room.gameplay.events.emit("beforeDawn");
       room.gameplay.events.emit("beforeDawn1");
@@ -19,7 +19,7 @@ module.exports = function() {
         if(p.player.pendingDeath.length > 0) {
           dead++;
           var deathPlace = deathPlaces[GET_RANDOM(0, deathPlaces.length-1)];
-          room.message("<span class='annonce_mort'><strong><i>✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé assassiné "+ deathPlace +"...</i></strong></span>");
+          room.message("<span class='mafia-dead-announce'>✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé assassiné "+ deathPlace +"...</span>");
           room.gameplay.kill(p.player);
         }
       });
@@ -27,7 +27,7 @@ module.exports = function() {
       room.gameplay.resetPlayerInfo();
 
       if(!dead) {
-        room.message("<span class='annonce_mort'><strong><i>Rien à signaler en cette belle matinée.</i></strong></span>");
+        room.message("<span class='mafia-dead-announce'>Rien à signaler en cette belle matinée.</span>");
       }
 
       if(room.gameplay.checkEnd()) {
@@ -36,7 +36,7 @@ module.exports = function() {
 
       room.gameplay.events.emit("afterDawn");
 
-      room.message("<span class='annonce_mort'><strong><i>Les habitants du village ont la possibilité d'éliminer un suspect lors d'un vote.</i></strong></span>");
+      room.message("<span class='mafia-dead-announce'>Les habitants du village ont la possibilité d'éliminer un suspect lors d'un vote.</span>");
       room.openChannel("general", "villager");
 
       var duration = 30 * room.gameplay.nbAlive("villager");
@@ -53,10 +53,10 @@ module.exports = function() {
       var victim = votes.execute(room);
 
       if(victim) {
-        room.message("<span class='annonce_mort'><strong><i>Le village a décidé de lyncher " + victim.username + " " + victim.canonicalRole + ".</i></strong></span>");
+        room.message("<span class='mafia-dead-announce'>Le village a décidé de lyncher " + victim.username + " " + victim.canonicalRole + ".</span>");
         room.gameplay.kill(victim);
       } else {
-        room.message("<span class='annonce_mort'><strong><i>Indécis, le village choisit de n'éliminer personne ... pour l'instant.</i></strong>");
+        room.message("<span class='mafia-dead-announce'>Indécis, le village choisit de n'éliminer personne ... pour l'instant.</span>");
       }
 
       room.closeChannel("general", "villager");

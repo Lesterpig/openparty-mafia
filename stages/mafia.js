@@ -10,8 +10,8 @@ module.exports = function() {
         p.player.pendingDeath = [];
       });
 
-      room.message("<h3>Une nouvelle nuit tombe sur le village.</h3>");
-      room.message("<div class='tour_mafia'><strong><i>Tandis que les villageois dorment paisiblement, la Mafia passe à l'action.</i></strong></div>");
+      room.message("<div class='mafia-day-transition'><span class='glyphicon glyphicon-fire'></span> La nuit tombe sur le village</div>");
+      room.message("<span class='mafia-dead-announce'>Tandis que les villageois dorment paisiblement, la Mafia passe à l'action.</span>");
 
       room.gameplay.resetPlayerInfo();
       room.openChannel("mafia", "mafia");
@@ -26,9 +26,9 @@ module.exports = function() {
       var victim = votes.execute(room);
       if(victim) {
         victim.pendingDeath.push({type: "mafia"});
-        room.message("mafia", "<br /><div class='tour_mafia'><strong><i>La Mafia a décidé d'éliminer " + victim.username + "</i></strong></div>")
+        room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span> La Mafia a décidé d'éliminer " + victim.username + "</span>");
       } else {
-        room.message("mafia", "<br /><div class='tour_mafia'><strong><i>Les mafiosi ne se mettent pas d'accord et n'éliminent personne.</i></strong></div>")
+        room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span> Les mafiosi ne se mettent pas d'accord et n'éliminent personne</span>");
       }
       room.closeChannel("mafia", "mafia");
       room.closeChannel("mafia", "godfather");

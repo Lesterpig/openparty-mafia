@@ -6,29 +6,38 @@
   color: #7E0505;
 }
 
-.vote {
+.mafia-vote {
   font-size: 12px;
   font-style: italic;
 }
 
-.tour_spes {
-  padding: 3px;
+.mafia-day-transition {
+  margin-top: 10px;
+  font-size: 25px;
+  border-bottom: 1px dashed grey;
+}
+
+.mafia-stage-action {
+  padding: 4px;
   border-width: 1px;
   border-style: solid;
   border-radius: 4px;
+  font-weight: bold;
+  text-decoration: italic;
+}
+
+.mafia-role-action {
   background-color: #337AB7;
-  color: #05247E;
+  color: white;
 }
 
-.tour_mafia {
-  padding: 3px;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 4px; 
+.mafia-mafia-action {
   background-color: #D9534F;
-  color: #7E0505;
+  color: white;
 }
 
-.annonce_mort {
+.mafia-dead-announce {
   font-variant: small-caps;
+  font-weight: bold;
+  text-decoration: italic;
 }

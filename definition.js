@@ -19,11 +19,11 @@ module.exports = function() {
   // Metadata
 
   this.name        = "Mafia";
-  this.version     = "0.0.3-dev";
+  this.version     = "0.1.0-dev";
   this.description = "Une version en ligne du jeu de Dimitry Davidoff - v" + this.version;
-  this.minPlayers  = 4;
+  this.minPlayers  = 3;
   this.maxPlayers  = 40;
-  this.opVersion   = ">=0.0.3-dev";
+  this.opVersion   = ">=0.1.0-dev";
 
   this.css         = ["mafia.css"];
 

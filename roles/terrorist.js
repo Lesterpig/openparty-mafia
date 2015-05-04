@@ -20,7 +20,7 @@ module.exports = function() {
 
         player.pendingDeath.push({type: "terrorist", target: choice.player});
         player.sendAvailableActions();
-        player.message("<div class='tour_spes'><strong><i>Boum ! Vous avez décidé d'emporter "+ choice.username +" dans votre mort.</i></strong></div>");
+        player.message("<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-flash'></span> Boum ! Vous avez décidé d'emporter "+ choice.username +" dans votre mort</span>");
 
       }
     }

@@ -21,7 +21,7 @@ module.exports = function() {
         player.detectHasPlayed = true;
         player.sendAvailableActions();
         var playerSide = (choice.player.roles.mafia ? "mafioso" : "innocent");
-        player.message("<div class='tour_spes'><strong><i>" + choice.username + " est " + playerSide + ".</i></strong></div>");
+        player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-search'></span> " + choice.username + " est " + playerSide + "</span>");
 
       }
     }

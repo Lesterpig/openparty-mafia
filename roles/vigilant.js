@@ -21,7 +21,7 @@ module.exports = function() {
         player.vigilantHasPlayed = true;
         choice.player.pendingDeath.push({type: "vigilant"});
         player.sendAvailableActions();
-        player.message("<div class='tour_spes'><strong><i>Vous avez décidé d'assassiner "+ choice.username +" cette nuit.</i></strong></div>");
+        player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-screenshot'></span> Vous avez décidé d'assassiner "+ choice.username +" cette nuit</span>");
 
       }
     }

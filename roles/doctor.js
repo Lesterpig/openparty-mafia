@@ -21,7 +21,7 @@ module.exports = function() {
         player.docHasPlayed = true;
         choice.player.isSafeByDoc  = true;
         player.sendAvailableActions();
-        player.message("<div class='tour_spes'><strong><i>"+ choice.username +" est protégé de la mort pour cette nuit.</i></strong></div>");
+        player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ choice.username +" est protégé de la mort pour cette nuit</span>");
 
       }
     }
