@@ -110,6 +110,13 @@ module.exports = function() {
     value: 0,
     help: "Un détective peut découvrir, chaque nuit, le camp d'un joueur (innocent ou mafioso).",
     role: "detective"
+  },
+  {
+    name: "Meneur de Jeu",
+    type: Boolean,
+    value: false,
+    help: "Quand ce mode est actif, le créateur de la partie devient MENEUR DE JEU. Il dispose de pouvoirs supplémentaires pour animer la partie à sa guise : modification du temps, ajouts de rôles personnalisés, discussions privées avec les joueurs...",
+    gamemasterMode: true
   }
   ];
 

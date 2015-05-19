@@ -8,8 +8,21 @@ module.exports = {
 
     var roles = {};
     var sum = 0;
+    var playerShift = 0;
 
     room.gameplay.parameters.forEach(function(p) {
+
+      // Various parameters registration
+
+      if(p.gamemasterMode && p.value) {
+        room.gameplay.gamemasterMode = true;
+        playerShift = 1;
+      }
+
+      // Roles registration
+
+      if(!p.role)
+        return;
 
       if(p.value < 0)
         throw new Error("Nombre invalide pour le rôle " + p.role + ".");
@@ -21,12 +34,12 @@ module.exports = {
       sum += p.value;
     });
 
-    if(sum > room.players.length)
+    if(sum > room.players.length - playerShift)
       throw new Error("Trop de rôles par rapport au nombre de joueurs.");
 
     // Suffle player list
     var o = [];
-    for(var i = 0; i < room.players.length; i++) {
+    for(var i = 0 + playerShift; i < room.players.length; i++) {
       o[i] = i;
     }
 
@@ -37,12 +50,21 @@ module.exports = {
     rolesData.villager = require("./villager")();
     rolesData.dead     = require("./dead")();
 
-    room.players.forEach(function(p) {
+    room.players.forEach(function(p, i) {
+      if(i < playerShift)
+        return; // ignore playerShift players
       p.player.setChannel("general", null);
       p.player.setRole("villager", rolesData.villager);
       p.player.canonicalRole = "<span class='label label-default'>Villageois</span>";
       p.player.emit("setGameInfo", "Vous êtes "+ p.player.canonicalRole +". Vous devez éliminer les membres de la Mafia, mais vous n'avez aucun pouvoir spécifique.");
     });
+
+    if(room.gameplay.gamemasterMode) {
+      var gamemaster = room.players[0].player;
+      gamemaster.setRole("gamemaster", require("./gamemaster"));
+      gamemaster.canonicalRole = "<span class='label label-success'>Maître du Jeu</span>";
+      gamemaster.emit("setGameInfo", "Vous êtes <strong>Maître du Jeu</strong>. Bon courage ;)");
+    }
 
     // Affect roles
     for(var r in roles) {
