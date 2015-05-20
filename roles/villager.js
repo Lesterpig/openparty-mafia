@@ -11,7 +11,7 @@ module.exports = function() {
       vote: votes.getVoteAction("", "vote")
     },
     channels: {
-      general: {r: true, w: false, n: "Village"}
+      general: {r: true, w: false, n: "Village", p: 20}
     }
 
   }

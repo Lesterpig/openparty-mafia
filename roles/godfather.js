@@ -12,7 +12,7 @@ module.exports = function() {
       vote: votes.getVoteAction("mafia", "mafia")
     },
     channels: {
-      mafia: {r: true, w: false, n: "Mafia"}
+      mafia: {r: true, w: false, n: "Mafia", p: 10}
     }
 
   }

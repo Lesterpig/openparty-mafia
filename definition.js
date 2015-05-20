@@ -23,7 +23,7 @@ module.exports = function() {
   this.description = "Une version en ligne du jeu de Dimitry Davidoff - v" + this.version;
   this.minPlayers  = 3;
   this.maxPlayers  = 40;
-  this.opVersion   = ">=0.1.0-dev";
+  this.opVersion   = ">=0.1.1-dev";
 
   this.css         = ["mafia.css"];
 
@@ -136,7 +136,7 @@ module.exports = function() {
   this.processMessage = function(channel, message, player) {
 
     if(channel.match(/^player\-/)) {
-      player.room.message("player-" + player.username, "<span class='mafia-private-chat'>À " + channel.replace(/player\-/, "") + " : " + message + "</span>");
+      player.message("<span class='mafia-private-chat'>À " + channel.replace(/player\-/, "") + " : " + message + "</span>");
       message = "<span class='mafia-private-chat'>[PRIVÉ] " + message + "</span>";
     }
 

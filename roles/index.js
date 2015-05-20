@@ -61,6 +61,7 @@ module.exports = {
 
     if(room.gameplay.gamemasterMode) {
       var gamemaster = room.players[0].player;
+      gamemaster.setChannel("general", null);
       gamemaster.setRole("gamemaster", require("./gamemaster")(room));
       gamemaster.canonicalRole = "<span class='label label-success'>Maître du Jeu</span>";
       gamemaster.emit("setGameInfo", "Vous êtes <strong>Maître du Jeu</strong>. Bon courage ;)");
