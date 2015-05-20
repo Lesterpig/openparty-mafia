@@ -6,6 +6,14 @@
   color: #7E0505;
 }
 
+.mafia-gamemaster-chat {
+  font-weight: bold;
+}
+
+.mafia-private-chat {
+  color: blue;
+}
+
 .mafia-vote {
   font-size: 12px;
   font-style: italic;

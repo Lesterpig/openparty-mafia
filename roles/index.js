@@ -39,7 +39,7 @@ module.exports = {
 
     // Suffle player list
     var o = [];
-    for(var i = 0 + playerShift; i < room.players.length; i++) {
+    for(var i = 0; i < room.players.length - playerShift; i++) {
       o[i] = i;
     }
 
@@ -61,7 +61,7 @@ module.exports = {
 
     if(room.gameplay.gamemasterMode) {
       var gamemaster = room.players[0].player;
-      gamemaster.setRole("gamemaster", require("./gamemaster"));
+      gamemaster.setRole("gamemaster", require("./gamemaster")(room));
       gamemaster.canonicalRole = "<span class='label label-success'>Maître du Jeu</span>";
       gamemaster.emit("setGameInfo", "Vous êtes <strong>Maître du Jeu</strong>. Bon courage ;)");
     }
@@ -74,7 +74,7 @@ module.exports = {
         rolesData[r].beforeAll(room);
 
       for(var i = 0; i < roles[r]; i++) {
-        var index = o.pop();
+        var index = o.pop() + playerShift;
         room.players[index].player.setRole(r, rolesData[r]);
 
         var c = "primary";

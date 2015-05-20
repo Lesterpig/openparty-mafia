@@ -135,12 +135,21 @@ module.exports = function() {
 
   this.processMessage = function(channel, message, player) {
 
+    if(channel.match(/^player\-/)) {
+      player.room.message("player-" + player.username, "<span class='mafia-private-chat'>À " + channel.replace(/player\-/, "") + " : " + message + "</span>");
+      message = "<span class='mafia-private-chat'>[PRIVÉ] " + message + "</span>";
+    }
+
     if(channel === "dead") {
       message = "<i class='mafia-dead-chat'>" + message + "</i>";
     }
 
     if(channel === "mafia") {
       message = "<span class='mafia-mafia-chat'>" + message + "</span>";
+    }
+
+    if(player.roles.gamemaster) {
+      message = "<span class='mafia-gamemaster-chat'>" + message + "</span>";
     }
 
     return message;
