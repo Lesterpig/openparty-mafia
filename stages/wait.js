@@ -5,6 +5,13 @@ module.exports = function() {
       if(!this.called) {
         this.nextStageAfterWait = "mafia";
         this.called = true;
+
+        room.players.forEach(function(p, i) {
+          if(i === 0)
+            return;
+          room.gameplay.gamemaster.message(p.username + " est " + p.player.canonicalRole);
+        });
+
       } else {
         this.nextStageAfterWait = "vote";
       }

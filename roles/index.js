@@ -16,7 +16,7 @@ module.exports = {
 
       if(p.gamemasterMode && p.value) {
         room.gameplay.gamemasterMode = true;
-        room.gameplay.gamemaster     = room.player[0].player;
+        room.gameplay.gamemaster     = room.players[0].player;
         playerShift = 1;
       }
 
