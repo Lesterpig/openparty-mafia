@@ -16,7 +16,18 @@ module.exports = function(room) {
   });
 
   return {
-    actions: {},
+    actions: {
+      abortWait: {
+        isAvailable: function(player) {
+          return player.room.currentStage === "wait";
+        },
+        type: "button",
+        options: {submit: "Terminer l'attente"},
+        execute: function(player) {
+          player.room.endStage();
+        }
+      }
+    },
     channels: channels
   }
 

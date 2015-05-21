@@ -6,6 +6,7 @@ module.exports = {
     out.mafia = new (require("./mafia"));
     out.end   = new (require("./end"));
     out.vote  = new (require("./vote.js"));
+    out.wait  = new (require("./wait.js"));
 
     (function(room) {
       room.openChannel = function(channel, role) {

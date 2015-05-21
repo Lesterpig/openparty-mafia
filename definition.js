@@ -60,8 +60,13 @@ module.exports = function() {
       var parrainStr = (nbParrain > 1 ? "parrains" : "parrain");
       room.message("<strong><i>Vous vous trouvez dans le village de Salem. La Mafia rôde, et menace sérieusement la vie des villageois...</i></strong>");
       room.message("<strong><i>La police locale pense que " + nbMafio + " " + mafioStr + " parmi vous, " + nbTerror + " " + terrorStr + ", ainsi que " + nbParrain + " " + parrainStr + ". Prenez garde !</strong></i>");
-      room.message("<strong><i>Pour aider les innocents, il y a " + nbDoc + " " + docStr + ", " + nbVigile + " " + vigileStr + " et " + nbDetect + " " + detectStr + ".")
-      room.nextStage("mafia");
+      room.message("<strong><i>Pour aider les innocents, il y a " + nbDoc + " " + docStr + ", " + nbVigile + " " + vigileStr + " et " + nbDetect + " " + detectStr + ".</strong></i>")
+
+      if(!room.gameplay.gamemasterMode)
+        room.nextStage("mafia");
+      else
+        room.nextStage("wait");
+
     }, 100);
 
   };
