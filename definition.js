@@ -13,6 +13,7 @@ var roles      = require("./roles/index");
 var stages     = require("./stages/index");
 var victory    = require("./lib/victory");
 var playerInfo = require("./lib/playerInfo");
+var commands   = require("./lib/commands");
 
 module.exports = function() {
 
@@ -139,6 +140,10 @@ module.exports = function() {
   // Chat styles
 
   this.processMessage = function(channel, message, player) {
+
+    if(player.roles.gamemaster && commands.test(message, player)) {
+      return false;
+    }
 
     if(channel.match(/^player\-/)) {
       player.message("<span class='mafia-private-chat'>À " + channel.replace(/player\-/, "") + " : " + message + "</span>");
