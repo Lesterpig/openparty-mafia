@@ -130,6 +130,12 @@ module.exports = function() {
 
   this.onDisconnect = function(room, player) {
 
+    if(player.roles && player.roles.gamemaster) {
+      room.gameplay.gamemasterMode = false;
+      if(room.currentStage === "wait")
+        room.endStage();
+    }
+
     if(player.canonicalRole)
       this.room.message("<strong><i>" + player.username + " " + player.canonicalRole + " s'est enfui.</i></strong>");
 
