@@ -118,7 +118,7 @@ module.exports = function() {
     role: "detective"
   },
   {
-    name: "Meneur de Jeu",
+    name: "Mode Maître du Jeu",
     type: Boolean,
     value: false,
     help: "Quand ce mode est actif, le créateur de la partie devient MENEUR DE JEU. Il dispose de pouvoirs supplémentaires pour animer la partie à sa guise : modification du temps, ajouts de rôles personnalisés, discussions privées avec les joueurs...",
