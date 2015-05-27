@@ -65,7 +65,7 @@ module.exports = {
       gamemaster.setChannel("general", null);
       gamemaster.setRole("gamemaster", require("./gamemaster")(room));
       gamemaster.canonicalRole = "<span class='label label-success'>Maître du Jeu</span>";
-      gamemaster.emit("setGameInfo", "Vous êtes <strong>Maître du Jeu</strong>. Bon courage ;)");
+      gamemaster.emit("setGameInfo", "Vous êtes <strong>Maître du Jeu</strong>. Tapez /help pour obtenir de l'aide sur les commandes. Bon courage ;)");
     }
 
     // Affect roles
