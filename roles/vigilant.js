@@ -28,14 +28,6 @@ module.exports = function() {
   },
   channels: {},
 
-  beforeAll: function(room) {
-    room.gameplay.events.on("afterDusk", function() {
-      room.players.forEach(function(p) {
-        p.player.vigilantHasPlayed = false;
-      });
-    });
-  }
-
   }
 
 }
