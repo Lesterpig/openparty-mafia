@@ -34,6 +34,8 @@ Un paramètre est soit :
 /kill <p> <phrase*>     : tue le joueur nommé "p". Il sera indiqué :
                           "p (role) <phrase>"
                           par défaut, la phrase est "a été foudroyé"
+/save <p>               : sauve le joueur de la mort (avant l'aube)
+                          ne permet pas la "résurrection"
 /time <s>               : change la durée de la phase courante
                           si s vaut -1, alors la limite de temps est supprimée
 /role <p> <r> <c*>      : change le rôle du joueur "p" en "r" avec la couleur "c"

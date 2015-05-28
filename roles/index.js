@@ -9,6 +9,7 @@ module.exports = {
     var roles = {};
     var sum = 0;
     var playerShift = 0;
+    var mafiaOk = true;
 
     room.gameplay.parameters.forEach(function(p) {
 
@@ -18,6 +19,7 @@ module.exports = {
         room.gameplay.gamemasterMode = true;
         room.gameplay.gamemaster     = room.players[0].player;
         playerShift = 1;
+        mafiaOk = true;
       }
 
       // Roles registration
@@ -28,12 +30,15 @@ module.exports = {
       if(p.value < 0)
         throw new Error("Nombre invalide pour le rôle " + p.role + ".");
 
-      if(p.role === "mafia" && !p.value)
-        throw new Error("Vous devez avoir au moins un mafioso dans la partie.");
+      if(p.role === "mafia" && p.value)
+        mafiaOk = true;
 
       roles[p.role] = p.value;
       sum += p.value;
     });
+
+    if(!mafiaOk)
+      throw new Error("Vous devez avoir au moins un mafioso dans la partie.");
 
     if(sum > room.players.length - playerShift)
       throw new Error("Trop de rôles par rapport au nombre de joueurs.");
