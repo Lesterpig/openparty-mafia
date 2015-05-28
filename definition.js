@@ -130,10 +130,17 @@ module.exports = function() {
 
   this.onDisconnect = function(room, player) {
 
-    if(player.roles && player.roles.gamemaster) {
+    if(player.roles && player.roles.gamemaster) { // TODO : move this is gamemaster.js file
+
       room.gameplay.gamemasterMode = false;
+      room.gameplay.disableAutoVictory = false;
+
       if(room.currentStage === "wait")
         room.endStage();
+
+      room.player.forEach(function(p) {
+        p.player.setChannel("player-" + player.username, {r: false, w: false});
+      });
     }
 
     if(player.canonicalRole)

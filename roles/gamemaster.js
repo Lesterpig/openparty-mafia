@@ -3,7 +3,7 @@ module.exports = function(room) {
   var channels =  {
     mafia: {r: true, w: true, n: "Mafia", p: 10},
     dead: {r: true, w: true, n: "Cimetière", p: 5},
-    general: {r: true, w: true, n: "Village", p: 20}
+    village: {r: true, w: true, n: "Village", p: 20}
   };
 
   room.players.forEach(function(p,i) {

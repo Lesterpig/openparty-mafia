@@ -37,7 +37,7 @@ module.exports = function() {
       room.gameplay.events.emit("afterDawn");
 
       room.message("<span class='mafia-dead-announce'>Les habitants du village ont la possibilité d'éliminer un suspect lors d'un vote.</span>");
-      room.openChannel("general", "villager");
+      room.openChannel("village", "villager");
 
       var duration = 30 * room.gameplay.nbAlive("villager");
       if(duration > MAX_DURATION) {
@@ -59,7 +59,7 @@ module.exports = function() {
         room.message("<span class='mafia-dead-announce'>Indécis, le village choisit de n'éliminer personne ... pour l'instant.</span>");
       }
 
-      room.closeChannel("general", "villager");
+      room.closeChannel("village", "villager");
       room.gameplay.events.emit("afterDusk");
 
       if(!room.gameplay.checkEnd()) {
