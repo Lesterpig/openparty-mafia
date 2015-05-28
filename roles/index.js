@@ -30,7 +30,7 @@ module.exports = {
       if(p.value < 0)
         throw new Error("Nombre invalide pour le rôle " + p.role + ".");
 
-      if(p.role === "mafia" && p.value)
+      if((p.role === "mafia" || p.role === "godfather") && p.value)
         mafiaOk = true;
 
       roles[p.role] = p.value;

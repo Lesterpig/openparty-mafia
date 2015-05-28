@@ -138,7 +138,7 @@ module.exports = function() {
       if(room.currentStage === "wait")
         room.endStage();
 
-      room.player.forEach(function(p) {
+      room.players.forEach(function(p) {
         p.player.setChannel("player-" + player.username, {r: false, w: false});
       });
     }
