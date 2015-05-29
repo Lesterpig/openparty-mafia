@@ -24,7 +24,7 @@ module.exports = function() {
   this.description = "Une version en ligne du jeu de Dimitry Davidoff - v" + this.version;
   this.minPlayers  = 3;
   this.maxPlayers  = 40;
-  this.opVersion   = ">=0.1.1-dev";
+  this.opVersion   = ">=0.1.2-dev";
 
   this.css         = ["mafia.css"];
 
@@ -135,10 +135,13 @@ module.exports = function() {
       room.gameplay.gamemasterMode = false;
       room.gameplay.disableAutoVictory = false;
 
+      if(room.getRemainingTime() > 1000 * 60 * 3) // to avoid infinite stages
+        room.setStageDuration(60 * 3);
+
       if(room.currentStage === "wait")
         room.endStage();
 
-      room.players.forEach(function(p) {
+      room.players.forEach(function(p) { // disable gamemaster communication
         p.player.setChannel("player-" + player.username, {r: false, w: false});
       });
     }
