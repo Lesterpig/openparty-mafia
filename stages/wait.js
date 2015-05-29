@@ -5,17 +5,11 @@ module.exports = function() {
       if(!this.called) {
         this.nextStageAfterWait = "mafia";
         this.called = true;
-
-        room.players.forEach(function(p, i) {
-          if(i === 0)
-            return;
-          room.gameplay.gamemaster.message(p.username + " est " + p.player.canonicalRole);
-        });
-
       } else {
         this.nextStageAfterWait = "vote";
       }
 
+      room.gameplay.resetPlayerInfo();
       room.message("<span class='glyphicon glyphicon-hourglass'></span> <i>En attente du Maître du Jeu...</i>");
 
       room.players.forEach(function(p) {
