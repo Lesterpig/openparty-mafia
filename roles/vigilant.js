@@ -5,6 +5,7 @@ module.exports = function() {
   name: "Vigile",
   desc: "Vous pouvez assassiner un des habitants durant une nuit de votre choix; mais gardez à l'esprit que vous devez aider les villageois à repousser la Mafia...",
   side: "village",
+  night: true,
 
   actions: {
     protect: {

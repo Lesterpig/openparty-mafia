@@ -2,6 +2,12 @@ var votes = require("../lib/votes");
 
 module.exports = function() {
 
+  /**
+   * TODO some refactor
+   * The godfather should have two roles: "mafia" and "godfather"
+   * When refactored, it would be easier to deal with clans management
+   */
+
   return {
 
     name: "Parrain",

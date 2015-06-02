@@ -5,6 +5,7 @@ module.exports = function() {
   name: "Détective",
   desc: "Vous pouvez découvrir le camp d'un joueur <strong>chaque nuit</strong> : innocent ou mafioso. Vous devez aider les villageois à repousser la Mafia...",
   side: "village",
+  night: true,
 
   actions: {
     spy: {

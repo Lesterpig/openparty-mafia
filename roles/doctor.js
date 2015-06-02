@@ -5,6 +5,7 @@ module.exports = function() {
   name: "Docteur",
   desc: "Vous pouvez protéger quelqu'un <strong>chaque nuit</strong>, sauf vous-même. Vous devez aider les villageois à repousser la Mafia...",
   side: "village",
+  night: true,
 
   actions: {
     protect: {

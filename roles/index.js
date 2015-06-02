@@ -11,6 +11,9 @@ module.exports = {
     var playerShift = 0;
     var mafiaOk = true;
 
+    room.gameplay.gamemasterMode = false;
+    room.gameplay.gamemaster = undefined;
+
     room.gameplay.parameters.forEach(function(p) {
 
       // Various parameters registration

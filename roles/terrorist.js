@@ -5,6 +5,7 @@ module.exports = function() {
   name: "Terroriste",
   desc: "Vous pouvez vous suicider avec la personne de votre choix durant n'importe quelle nuit. <b>Vous ne connaissez pas les membres de la Mafia</b>, mais eux vous connaissent, et vous devez les aider grâce à votre suicide. <strong>Attention :</strong> si le docteur vous protège, vous ne pourrez pas utiliser votre pouvoir.",
   side: "mafia",
+  night: true,
 
   actions: {
     explode: {
