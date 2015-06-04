@@ -113,7 +113,7 @@ module.exports = {
       player.socket.emit("setGameInfo", "Vous êtes <strong>✝ éliminé</strong>. Vous pouvez quitter le village, ou dialoguer avec les âmes perdues du village...");
 
       // Disable channels
-      player.setChannel("general", {r: true, w: false});
+      player.setChannel("village", {r: true, w: false});
       player.setChannel("mafia", {r: false, w: false});
     };
 
