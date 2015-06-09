@@ -49,3 +49,8 @@
   font-weight: bold;
   text-decoration: italic;
 }
+
+.mafia-small-padding {
+  padding-left: 5px;
+  padding-right: 0px;
+}
