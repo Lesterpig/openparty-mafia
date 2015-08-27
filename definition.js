@@ -20,11 +20,11 @@ module.exports = function() {
   // Metadata
 
   this.name        = "Mafia";
-  this.version     = "0.1.0-dev";
+  this.version     = "0.1.0";
   this.description = "Une version en ligne du jeu de Dimitry Davidoff - v" + this.version;
   this.minPlayers  = 3;
   this.maxPlayers  = 40;
-  this.opVersion   = ">=0.1.2-dev";
+  this.opVersion   = ">0.1.2";
 
   this.css         = ["mafia.css"];
 
@@ -120,6 +120,7 @@ module.exports = function() {
     if(player.roles && player.roles.gamemaster) { // TODO : move this is gamemaster.js file
 
       room.gameplay.gamemasterMode = false;
+      room.gameplay.gamemaster     = null;
       room.gameplay.disableAutoVictory = false;
 
       if(room.getRemainingTime() > 1000 * 60 * 3) // to avoid infinite stages
@@ -149,7 +150,7 @@ module.exports = function() {
     }
 
     if(channel.match(/^player\-/)) {
-      player.message("<span class='mafia-private-chat'>À " + channel.replace(/player\-/, "") + " : " + message + "</span>");
+      player.message("<span class='mafia-private-chat'>À " + channel.replace(/player\-/, "") + " : " + message + "</span>", true);
       message = "<span class='mafia-private-chat'>[PRIVÉ] " + message + "</span>";
     }
 

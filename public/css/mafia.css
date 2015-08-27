@@ -26,10 +26,8 @@
 }
 
 .mafia-stage-action {
-  padding: 4px;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 4px;
+  padding: 2px;
+  border-radius: 2px;
   font-weight: bold;
   text-decoration: italic;
 }

@@ -7,6 +7,6 @@ module.exports = function() {
       dead: {r: true, w: true, n: "Cimetière"}
     }
 
-  }
+  };
 
-}
+};

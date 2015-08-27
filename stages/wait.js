@@ -2,11 +2,11 @@ module.exports = function() {
 
   return {
     start: function(room, callback) {
-      if(!this.called) {
-        this.nextStageAfterWait = "mafia";
-        this.called = true;
+      if(!room.gameplay.waitCalled) {
+        room.gameplay.nextStageAfterWait = "mafia";
+        room.gameplay.waitCalled = true;
       } else {
-        this.nextStageAfterWait = "vote";
+        room.gameplay.nextStageAfterWait = "vote";
       }
 
       room.gameplay.resetPlayerInfo();
@@ -25,8 +25,8 @@ module.exports = function() {
       callback(null, -1);
     },
     end: function(room, callback) {
-      room.nextStage(this.nextStageAfterWait);
+      room.nextStage(room.gameplay.nextStageAfterWait);
     }
-  }
+  };
 
 };
