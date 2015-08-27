@@ -10,7 +10,8 @@ module.exports = function() {
   actions: {
     explode: {
       isAvailable: function(player) {
-        return player.room.currentStage === "mafia" && !player.roles.dead;
+        var hasExploded = player.pendingDeath ? player.pendingDeath.some(function(i){ return i.type === "terrorist"; }) : false;
+        return player.room.currentStage === "mafia" && !player.roles.dead && !hasExploded;
       },
       type: "select",
       options: require("../lib/actions").getPlayerSelectOptions("Attentat"),
@@ -32,8 +33,16 @@ module.exports = function() {
     room.gameplay.events.on("beforeDawn2", function() {
       room.players.forEach(function(p) {
         p.player.pendingDeath.forEach(function(d) {
-          if(d.type === "terrorist")
+          if(d.type === "terrorist") {
+            // Trigger target death
             d.target.pendingDeath.push({type: "terroristTarget"});
+            // Override default death message
+            d.target.deathMessage = false;
+            p.player.deathMessage = "✝ " + p.username + " " + p.player.canonicalRole +
+                                    " a décidé de se faire exploser en entraînant "  +
+                                    d.target.username + " " + d.target.canonicalRole +
+                                    "..." ;
+          }
         });
       });
     });

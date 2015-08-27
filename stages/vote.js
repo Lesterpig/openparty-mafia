@@ -19,7 +19,10 @@ module.exports = function() {
         if(p.player.pendingDeath.length > 0) {
           dead++;
           var deathPlace = deathPlaces[GET_RANDOM(0, deathPlaces.length-1)];
-          room.message("<span class='mafia-dead-announce'>✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé assassiné "+ deathPlace +"...</span>");
+          if(p.player.deathMessage !== false) {
+            var deathMessage = p.player.deathMessage || "✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé assassiné "+ deathPlace +"...";
+            room.message("<span class='mafia-dead-announce'>" + deathMessage + "</span>");
+          }
           room.gameplay.kill(p.player);
         }
       });
