@@ -29,19 +29,20 @@ Un paramètre est soit :
 **Liste des commandes :** les paramètres faculatifs sont suivis d'une étoile.
 
 ```
-/help                   : affiche une aide
 /autoVictory            : active / désactive la victoire automatique
+/help                   : affiche une aide
 /kill <p> <phrase*>     : tue le joueur nommé "p". Il sera indiqué :
                           "p (role) <phrase>"
                           par défaut, la phrase est "a été foudroyé"
-/save <p>               : sauve le joueur de la mort (avant l'aube)
-                          ne permet pas la "résurrection"
-/time <s>               : change la durée de la phase courante
-                          si s vaut -1, alors la limite de temps est supprimée
 /role <p> <r> <c*>      : change le rôle du joueur "p" en "r" avec la couleur "c"
                           ATTENTION : cela ne change que le rôle affiché !
                           Couleurs disponibles : "r", "b", "o" (rouge, bleu, orange)
                           Par défaut, la couleur est grise.
+/murder <p>             : prépare la mort du joueur "p" (à effectuer pendant la nuit)
+/save <p>               : sauve le joueur de la mort (avant l'aube)
+                          ne permet pas la "résurrection"
+/time <s>               : change la durée de la phase courante
+                          si s vaut -1, alors la limite de temps est supprimée
 /victory <phrase>       : termine la partie en affichant la phrase en grand
 ```
 
