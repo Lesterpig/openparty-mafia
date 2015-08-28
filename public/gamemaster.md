@@ -29,6 +29,9 @@ Un paramètre est soit :
 **Liste des commandes :** les paramètres faculatifs sont suivis d'une étoile.
 
 ```
+Gestion de la partie
+********************
+
 /autoVictory            : active / désactive la victoire automatique
 /help                   : affiche une aide
 /kill <p> <phrase*>     : tue le joueur nommé "p". Il sera indiqué :
@@ -45,8 +48,15 @@ Un paramètre est soit :
                           si s vaut -1, alors la limite de temps est supprimée
 /victory <phrase>       : termine la partie en affichant la phrase en grand
 
+Gestion des sons
+****************
+
 /load <url>             : charge le son présent à l'URL indiquée (mp3)
-/play <n>               : lance la lecture du son nommé <n> (après chargement)
+/play <n> <l*> <v*>     : lance la lecture du son nommé <n> (après chargement)
+                          si le paramètre <l> vaut "l" (la lettre, pas le chiffre)
+                            alors le son est lu en boucle
+                          si le paramètre <v> est compris entre 0 et 1
+                            alors le volume est configuré selon ce pourcentage
 /stop <n>               : stoppe la lecture du son <n>
 ```
 
@@ -69,4 +79,11 @@ Le joueur "Du Pont" va être écrasé par une voiture et va rejoindre le cimeti�
 
 ```
 /kill "Du Pont" "a été écrasé par une voiture. Répugnant."
+```
+
+Le son "tictac.mp3" va être préchargé puis lui en boucle à un volume de 20%.
+
+```
+/load http://www.supers-sons.fr/tictac.mp3
+/play tictac.mp3 l 0.2
 ```
