@@ -44,6 +44,10 @@ Un paramètre est soit :
 /time <s>               : change la durée de la phase courante
                           si s vaut -1, alors la limite de temps est supprimée
 /victory <phrase>       : termine la partie en affichant la phrase en grand
+
+/load <url>             : charge le son présent à l'URL indiquée (mp3)
+/play <n>               : lance la lecture du son nommé <n> (après chargement)
+/stop <n>               : stoppe la lecture du son <n>
 ```
 
 Exemples

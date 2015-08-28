@@ -27,6 +27,7 @@ module.exports = function() {
   this.opVersion   = ">0.1.2";
 
   this.css         = ["mafia.css"];
+  this.sounds      = require('./data/audio.json');
 
   // Start
 
@@ -43,6 +44,7 @@ module.exports = function() {
       return callback(e.message);
     }
 
+    room.broadcast('playSound', 'start');
     callback(null);
 
     // TODO See #16
