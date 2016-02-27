@@ -42,7 +42,7 @@ module.exports = function() {
       room.message("<span class='mafia-dead-announce'>Les habitants du village ont la possibilité d'éliminer un suspect lors d'un vote.</span>");
       room.openChannel("village", "villager");
 
-      var duration = 30 * room.gameplay.nbAlive("villager");
+      var duration = 30 * room.gameplay.nbAlive("villager") + 60 * (room.gameplay.nbDays++);
       if(duration > MAX_DURATION) {
         duration = MAX_DURATION;
       }
