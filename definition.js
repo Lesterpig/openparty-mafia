@@ -33,6 +33,7 @@ module.exports = function() {
 
   this.start = function(room, callback) {
 
+    this.nbDays = 0;
     victory.init(this);
     playerInfo.init(this);
 
@@ -91,6 +92,13 @@ module.exports = function() {
     value: 0,
     help: "Un médecin peut protéger un citoyen par nuit s'il le souhaite. Si la vie du protégé est menacée, il survivra quand même.",
     role: "doctor"
+  },
+  {
+    name: "Nombre de Secouristes",
+    type: Number,
+    value: 0,
+    help: "Un secouriste peut sauver une victime de la Mafia. Il est déconseillé de mettre plusieurs secouristes dans la composition, même si cela est possible.",
+    role: "rescuer"
   },
   {
     name: "Nombre de Vigiles",

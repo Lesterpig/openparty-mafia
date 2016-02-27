@@ -3,10 +3,11 @@ module.exports = {
   init: function(room) {
     out = {};
 
-    out.mafia = new (require("./mafia"));
-    out.end   = new (require("./end"));
-    out.vote  = new (require("./vote.js"));
-    out.wait  = new (require("./wait.js"));
+    out.mafia      = new (require("./mafia"));
+    out.afterMafia = new (require("./mafia_after"));
+    out.end        = new (require("./end"));
+    out.vote       = new (require("./vote.js"));
+    out.wait       = new (require("./wait.js"));
 
     (function(room) {
       room.openChannel = function(channel, role) {

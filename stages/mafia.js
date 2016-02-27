@@ -69,12 +69,7 @@ module.exports = function() {
       }
       room.closeChannel("mafia", "mafia");
       room.closeChannel("mafia", "godfather");
-      if(!room.gameplay.gamemasterMode) {
-        room.nextStage("vote");
-      } else {
-        room.nextStage("wait");
-      }
-
+      room.nextStage("afterMafia");
     }
   };
 
