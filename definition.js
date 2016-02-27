@@ -139,6 +139,12 @@ module.exports = function() {
     if(player.canonicalRole)
       this.room.message("<strong><i>" + player.username + " " + player.canonicalRole + " s'est enfui.</i></strong>");
 
+    // Update vote (if any)
+    if(player.choice) {
+      player.choice.nbVotes--;
+      this.sendPlayerInfo(player.choice.socket)
+    }
+
     if(room.gameplay.checkEnd)
       room.gameplay.checkEnd();
   }
