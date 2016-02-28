@@ -6,6 +6,7 @@ module.exports = function() {
       var duration = 0;
       room.players.forEach(function(p) {
         var r = p.player.roles;
+        if(r.dead) return;
         for(var role in r) {
           if(r[role].afterMafia) {
             duration = 20;

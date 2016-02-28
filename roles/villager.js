@@ -11,7 +11,7 @@ module.exports = function() {
       vote: votes.getVoteAction("", "vote"),
       skipVote: {
         isAvailable: function(player) {
-          return player.room.gameplay.nbDays > 0 && player.room.currentStage === "vote" && !player.roles.dead && !player.skipVote;
+          return player.room.gameplay.nbDays > 1 && player.room.currentStage === "vote" && !player.roles.dead && !player.skipVote;
         },
         type: "button",
         options: {submit: "Passer le vote"},
