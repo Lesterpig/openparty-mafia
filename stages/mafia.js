@@ -5,7 +5,6 @@ module.exports = function() {
 
   return {
     start: function(room, callback) {
-
       // Reset pending death
       room.players.forEach(function(p) {
         p.player.pendingDeath = [];
@@ -52,13 +51,10 @@ module.exports = function() {
       room.gameplay.resetPlayerInfo();
       room.openChannel("mafia", "mafia");
       room.openChannel("mafia", "godfather");
-
       room.gameplay.events.emit("mafiaTurn");
-
       callback(null, 30);
     },
     end: function(room, callback) {
-
       var victim = votes.execute(room);
       room.message(""); // empty line
       if(victim) {
@@ -67,6 +63,7 @@ module.exports = function() {
       } else {
         room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span> Les mafiosi ne se mettent pas d'accord et n'éliminent personne</span>");
       }
+      room.gameplay.events.emit("mafiaVote", victim);
       room.closeChannel("mafia", "mafia");
       room.closeChannel("mafia", "godfather");
       room.nextStage("afterMafia");

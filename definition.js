@@ -115,6 +115,13 @@ module.exports = function() {
     role: "detective"
   },
   {
+    name: "Nombre d'Espions",
+    type: Number,
+    value: 0,
+    help: "Un espion peut connaître la victime de la Mafia chaque nuit, sans se faire repérer.",
+    role: "spy"
+  },
+  {
     name: "Mode Maître du Jeu",
     type: Boolean,
     value: false,
