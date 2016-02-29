@@ -23,11 +23,14 @@ module.exports = function() {
       },
       execute: function(player, choice) {
         var victim = getFirstMafiaVictim(player.room);
-        if(!victim) return;
+        if(!victim) { // The victim is not available anymore (left, healed by another rescuer, killed by somebody else...)
+          player.sendAvailableActions();
+          return;
+        }
         victim.player.pendingDeath = [];
         player.rescuerHasPlayed = true;
         player.sendAvailableActions();
-        player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ victim.username +" à été sauvé d'une mort affreuse</span>");
+        player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ victim.username +" a été sauvé d'une mort affreuse</span>");
       }
     }
   },
@@ -42,7 +45,7 @@ function getFirstMafiaVictim(room) {
   var victim = null;
   room.players.some(function(p) {
     var deaths = p.player.pendingDeath;
-    if(deaths.length === 1 && deaths[0].type === "mafia") {
+    if(deaths.length === 1 && deaths[0].type === "mafia" && !p.player.isSafeByDoc) {
       victim = p;
       return true;
     }
