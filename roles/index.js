@@ -55,7 +55,7 @@ module.exports = {
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 
     // Set default role and remove default channel
-    rolesData = {};
+    var rolesData = {};
     rolesData.villager = require("./villager")();
     rolesData.dead     = require("./dead")();
 
@@ -99,7 +99,7 @@ module.exports = {
     // Add custom functions in room.gameplay
 
     room.gameplay.nbAlive = function(role) {
-      nb = 0;
+      var nb = 0;
       this.room.players.forEach(function(p) {
         if(!p.player.roles.dead && p.player.roles[role]) {
           nb++;
@@ -121,4 +121,4 @@ module.exports = {
 
   }
 
-}
+};

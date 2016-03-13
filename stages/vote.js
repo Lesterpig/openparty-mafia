@@ -70,6 +70,6 @@ module.exports = function() {
       }
 
     }
-  }
+  };
 
 };

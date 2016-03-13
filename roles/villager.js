@@ -21,8 +21,8 @@ module.exports = function() {
 
           var skip = player.room.players.every(function(p) {
             return p.player.roles.dead
-                || p.player.roles.gamemaster
-                || p.player.skipVote;
+              || p.player.roles.gamemaster
+              || p.player.skipVote;
           });
 
           if(skip) {
@@ -36,6 +36,6 @@ module.exports = function() {
       village: {r: true, w: false, n: "Village", p: 20}
     }
 
-  }
+  };
 
-}
+};

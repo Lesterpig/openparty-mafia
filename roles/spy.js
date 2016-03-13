@@ -20,8 +20,8 @@ module.exports = function() {
             p.player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-user'></span> " + announce + "</span>");
           }
         });
-      })
+      });
     }
 
-  }
-}
+  };
+};

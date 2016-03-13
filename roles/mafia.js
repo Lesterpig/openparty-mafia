@@ -15,6 +15,6 @@ module.exports = function() {
       mafia: {r: true, w: false, n: "Mafia", p: 10}
     }
 
-  }
+  };
 
-}
+};

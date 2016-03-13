@@ -1,13 +1,13 @@
 module.exports = {
 
   init: function(room) {
-    out = {};
+    var out = {};
 
-    out.mafia      = new (require("./mafia"));
-    out.afterMafia = new (require("./mafia_after"));
-    out.end        = new (require("./end"));
-    out.vote       = new (require("./vote.js"));
-    out.wait       = new (require("./wait.js"));
+    out.mafia      = require("./mafia")();
+    out.afterMafia = require("./mafia_after")();
+    out.end        = require("./end")();
+    out.vote       = require("./vote.js")();
+    out.wait       = require("./wait.js")();
 
     (function(room) {
       room.openChannel = function(channel, role) {
@@ -31,4 +31,4 @@ module.exports = {
     return out;
   },
 
-}
+};
