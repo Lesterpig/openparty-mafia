@@ -39,7 +39,7 @@ module.exports = function() {
 
     try {
       room.gameplay.events = new Emitter();
-      this.roles  = roles.init(room);
+      roles.init(room);
       this.stages = stages.init(room);
     } catch(e) {
       return callback(e.message);
@@ -120,6 +120,13 @@ module.exports = function() {
     value: 0,
     help: "Un espion peut connaître la victime de la Mafia chaque nuit, sans se faire repérer.",
     role: "spy"
+  },
+  {
+    name: "Nombre de Conseillers",
+    type: Number,
+    value: 0,
+    help: "Un conseiller peut chaque nuit interdire de vote un habitant du village.",
+    role: "councilman"
   },
   {
     name: "Mode Maître du Jeu",

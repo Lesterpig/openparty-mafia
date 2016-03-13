@@ -10,19 +10,22 @@ module.exports = {
     out.wait       = require("./wait.js")();
 
     (function(room) {
+
       room.openChannel = function(channel, role) {
-        room.gameplay.roles[role].channels[channel].w = true;
-        room.updateChannels();
+        room.setChannelStatus(channel, role, true);
       };
 
       room.closeChannel = function(channel, role) {
-        room.gameplay.roles[role].channels[channel].w = false;
-        room.updateChannels();
+        room.setChannelStatus(channel, role, false);
       };
 
-      room.updateChannels = function() {
+      room.setChannelStatus = function(channel, role, open) {
         room.players.forEach(function(p) {
-          p.player.sendWriteChannels();
+          var r = p.player.roles[role];
+          if(r) {
+            r.channels[channel].w = open;
+            p.player.sendWriteChannels();
+          }
         });
       };
 

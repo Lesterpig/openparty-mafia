@@ -54,16 +54,11 @@ module.exports = {
 
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 
-    // Set default role and remove default channel
-    var rolesData = {};
-    rolesData.villager = require("./villager")();
-    rolesData.dead     = require("./dead")();
-
     room.players.forEach(function(p, i) {
       if(i < playerShift)
         return; // ignore playerShift players
-      p.player.setChannel("general", null);
-      p.player.setRole("villager", rolesData.villager);
+      p.player.setChannel("general", null); // remove general channel (unused in Mafia, but proposed by Openparty by default)
+      p.player.setRole("villager", require("./villager")()); // everyone is a villager, except gamemaster
       p.player.canonicalRole = "<span class='label label-default'>Villageois</span>";
       p.player.emit("setGameInfo", "Vous êtes "+ p.player.canonicalRole +". Vous devez éliminer les membres de la Mafia, mais vous n'avez aucun pouvoir spécifique.");
     });
@@ -78,21 +73,21 @@ module.exports = {
 
     // Affect roles
     for(var r in roles) {
-      rolesData[r] = require("./" + r)();
-
-      if(rolesData[r].beforeAll)
-        rolesData[r].beforeAll(room);
+      var roleData = require("./" + r);
+      var globalSample = roleData(); // This object is just used to trigger events global to each role
+      if(globalSample.beforeAll)
+        globalSample.beforeAll(room);
 
       for(var i = 0; i < roles[r]; i++) {
-        var index = o.pop() + playerShift;
-        room.players[index].player.setRole(r, rolesData[r]);
+        var j = o.pop() + playerShift;
+        room.players[j].player.setRole(r, roleData()); // Each player has a NEW instance of each role, for excellent customization posibilities
 
         var c = "primary";
-        if(rolesData[r].side === "mafia")
+        if(globalSample.side === "mafia")
           c = "danger";
 
-        room.players[index].player.canonicalRole = "<span class='label label-"+c+"'>" + rolesData[r].name + "</span>";
-        room.players[index].player.emit("setGameInfo", "Vous êtes "+ room.players[index].player.canonicalRole +". " + rolesData[r].desc);
+        room.players[j].player.canonicalRole = "<span class='label label-"+c+"'>" + globalSample.name + "</span>";
+        room.players[j].player.emit("setGameInfo", "Vous êtes "+ room.players[j].player.canonicalRole +". " + globalSample.desc);
       }
     }
 
@@ -109,16 +104,13 @@ module.exports = {
     };
 
     room.gameplay.kill = function(player) {
-      player.setRole("dead", this.roles.dead);
+      player.setRole("dead", require("./dead")());
       player.socket.emit("setGameInfo", "Vous êtes <strong>✝ éliminé</strong>. Vous pouvez quitter le village, ou dialoguer avec les âmes perdues du village...");
 
       // Disable channels
       player.setChannel("village", {r: true, w: false});
       player.setChannel("mafia", {r: false, w: false});
     };
-
-    return rolesData;
-
   }
 
 };
