@@ -3,7 +3,7 @@
 }
 
 .mafia-mafia-chat {
-  color: #7E0505;
+  color: red;
 }
 
 .mafia-gamemaster-chat {
@@ -15,7 +15,7 @@
 }
 
 .mafia-vote {
-  font-size: 12px;
+  font-size: 15px;
   font-style: italic;
 }
 
