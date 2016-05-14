@@ -148,7 +148,7 @@ module.exports = function() {
       room.gameplay.disableAutoVictory = false;
 
       if(room.getRemainingTime() > 1000 * 60 * 3) // to avoid infinite stages
-        room.setStageDuration(60 * 3);
+        room.setStageDuration(0);
 
       if(room.currentStage === "wait")
         room.endStage();
