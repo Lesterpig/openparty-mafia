@@ -115,6 +115,13 @@ module.exports = function() {
     role: "detective"
   },
   {
+    name: "Nombre de Dentistes",
+    type: Number,
+    value: 0,
+    help: "Un dentiste peut, durant une nuit de son choix, interdire à un habitant de parler au prochain tour.",
+    role: "dentist"
+  },
+  {
     name: "Nombre d'Espions",
     type: Number,
     value: 0,
@@ -147,9 +154,9 @@ module.exports = function() {
       room.gameplay.gamemaster     = null;
       room.gameplay.disableAutoVictory = false;
 
-      if(room.getRemainingTime() > 1000 * 60 * 3) // to avoid infinite stages
+      if(room.getRemainingTime() == Number.POSITIVE_INFINITY) // to avoid infinite stages
         room.setStageDuration(0);
-
+        
       if(room.currentStage === "wait")
         room.endStage();
 

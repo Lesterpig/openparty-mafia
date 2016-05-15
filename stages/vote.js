@@ -40,6 +40,12 @@ module.exports = function() {
       room.gameplay.events.emit("afterDawn");
 
       room.message("<span class='mafia-dead-announce'>Les habitants du village ont la possibilité d'éliminer un suspect lors d'un vote.</span>");
+    
+      room.players.forEach(function(p) {
+        if((p.player.canTalk === 2) && (!p.player.roles.dead))
+          p.player.message("<span class='mafia-dead-announce'>Vous êtes <strong>muet</strong>. Vous ne pourrez parler qu'à partir du prochain tour.</span>");
+      });
+
       room.openChannel("village", "villager");
 
       var duration = 30 * room.gameplay.nbAlive("villager") + 60 * (room.gameplay.nbDays++);

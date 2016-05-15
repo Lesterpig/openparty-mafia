@@ -111,6 +111,24 @@ module.exports = {
       player.setChannel("village", {r: true, w: false});
       player.setChannel("mafia", {r: false, w: false});
     };
+      
+    room.gameplay.mute = function(player) {
+      if (!player.roles.dead) {
+        // Disable channels
+        player.setChannel("village", {r: true, w: false});
+        if (player.roles.mafia)
+          player.setChannel("mafia", {r: true, w: false});
+      }
+    };
+      
+    room.gameplay.unmute = function(player) {
+      if (!player.roles.dead) {
+        // Enable channels
+        player.setChannel("village", {r: true, w: true});
+        if (player.roles.mafia)
+          player.setChannel("mafia", {r: true, w: true});
+      }
+    };      
   }
 
 };
