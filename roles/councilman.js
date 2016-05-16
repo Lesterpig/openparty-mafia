@@ -13,7 +13,7 @@ module.exports = function() {
           return player.room.currentStage === "mafia" && !player.roles.dead && !player.councilmanHasPlayed;
         },
         type: "select",
-        options: require("../lib/actions").getPlayerSelectOptions("Interdire de vote"),
+        options: require("../lib/actions").getPlayerSelectOptions("Interdire de vote", {alive: "yes", innocent: "any", self: "no"}),
         execute: function(player, choice) {
           choice = player.room.resolveUsername(choice);
           if(!choice || choice === player.councilmanLastChoice)
