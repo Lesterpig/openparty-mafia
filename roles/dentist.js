@@ -5,7 +5,6 @@ module.exports = function() {
     name: "Dentiste",
     desc: "Vous pouvez interdire à une personne de parler au prochain tour <strong>une fois par partie</strong>. Vous devez aider les villageois à repousser la Mafia...",
     side: "village",
-    night: true,
 
     actions: {
       mute: {

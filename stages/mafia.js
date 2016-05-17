@@ -57,10 +57,6 @@ module.exports = function() {
     end: function(room, callback) {
       var victim = votes.execute(room);
       room.message(""); // empty line
-
-      // push gamble death first so the rescuer can't try to save
-      gambleOutcome(room, victim);
-
       if(victim) {
         victim.pendingDeath.push({type: "mafia"});
         room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span> La Mafia a décidé d'éliminer " + victim.username + "</span>");
@@ -75,15 +71,3 @@ module.exports = function() {
   };
 
 };
-
-function gambleOutcome(room, victim)
-{
-  room.players.forEach(function(p) {
-    if (p.player.gamblerHasPlayed) {
-      if (p.player.gamble == victim)
-        p.player.outcome = "win";
-      else
-        p.player.pendingDeath.push({type: "gamble"});
-    }
-  }); 
-}
