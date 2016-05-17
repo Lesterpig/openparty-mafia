@@ -136,6 +136,13 @@ module.exports = function() {
     role: "councilman"
   },
   {
+    name: "Nombre de Parieurs",
+    type: Number,
+    value: 0,
+    help: "Un parieur peut chaque nuit parier sur la victime choisie par les mafieux.",
+    role: "gambler"
+  },
+  {
     name: "Mode Maître du Jeu",
     type: Boolean,
     value: false,
