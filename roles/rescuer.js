@@ -28,7 +28,7 @@ module.exports = function() {
             return;
           }
           victim.player.pendingDeath = [];
-          require("./index").lockGamblers(p.player.room, p.player);
+          require("./index").lockGamblers(victim.player.room, victim.player);
   
           player.rescuerHasPlayed = true;
           player.sendAvailableActions();
