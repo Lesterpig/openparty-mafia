@@ -13,7 +13,7 @@ module.exports = function() {
           return player.room.currentStage === "mafia" && !player.roles.dead && !player.vigilantHasPlayed;
         },
         type: "select",
-        options: require("../lib/actions").getPlayerSelectOptions("Assassiner", {alive: "yes", innocent: "any", self: "no"}),
+        options: require("../lib/actions").getPlayerSelectOptions("Assassiner", {alive: "yes", innocent: "any"}),
         execute: function(player, choice) {
           choice = player.room.resolveUsername(choice);
           if(!choice || player === choice.player)
