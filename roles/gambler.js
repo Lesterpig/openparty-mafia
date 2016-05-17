@@ -10,7 +10,7 @@ module.exports = function() {
     actions: {
       bet: {
         isAvailable: function(player) {
-          return player.room.currentStage === "mafia" && !player.roles.dead && !player.gamblerHasPlayed && !player.gambleLocked;
+          return player.room.currentStage === "mafia" && !player.roles.dead && !player.gamblerHasPlayed && !player.gamblerLocked;
         },
         type: "select",
         options: require("../lib/actions").getPlayerSelectOptions("Parier", {alive: "yes", innocent: "any", self: "yes"}),
@@ -52,10 +52,8 @@ module.exports = function() {
 }
 
 function rewardGambler(player) {
-  var name = giveRandomMafiaName(player);
-  player.message("<span class='mafia-dead-announce'><span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-tags'></span>&nbsp; Pari gagné</span> Vous découvrez que <span class='mafia-stage-action mafia-mafia-action'>" + name + "</span> est dans la Mafia.</span>");
-  if (player.gambleLocked)
-    player.message("<span class='mafia-dead-announce'>Votre chance a tourné et vous ne pouvez plus parier.</span>");
+    var name = giveRandomMafiaName(player);
+    player.message("<span class='mafia-dead-announce'><span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-tags'></span>&nbsp; Pari gagné</span> Vous découvrez que <span class='mafia-stage-action mafia-mafia-action'>" + name + "</span> est dans la Mafia.</span>");
 }
 
 function giveRandomMafiaName(g) {
