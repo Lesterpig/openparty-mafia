@@ -139,5 +139,5 @@ module.exports = {
           p.player.gambleLocked = true;
     });
   }
-  
+
 };
