@@ -128,7 +128,15 @@ module.exports = {
         if (player.roles.mafia)
           player.setChannel("mafia", {r: true, w: true});
       }
-    };      
+    };
+  },
+  
+  // Methods shared by multiple roles
+  lockGamblers: function(room, victim) {
+    room.players.forEach(function(p) {
+      if (p.player.gamblerHasPlayed)
+        if (p.player.gamble == victim)
+          p.player.gambleLocked = true;
+    });
   }
-
 };
