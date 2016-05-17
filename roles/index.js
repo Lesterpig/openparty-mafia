@@ -135,8 +135,7 @@ module.exports = {
 
   lockGamblers: function(room, victim) {
     room.players.forEach(function(p) {
-      if (p.player.gamblerHasPlayed)
-        if (p.player.gamble == victim)
+      if ((p.player.gamblerHasPlayed) && (p.player.gamble == victim))
           p.player.gambleLocked = true;
     });
   }
