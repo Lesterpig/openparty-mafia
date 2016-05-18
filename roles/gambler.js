@@ -36,7 +36,9 @@ module.exports = function() {
       room.gameplay.events.on("beforeDawn", function() {
         room.players.forEach(function(p) {
           if (p.player.gamblerHasPlayed && p.player.outcome)
-              rewardGambler(p.player);
+            rewardGambler(p.player);
+          else if (isGambleDeathCancelled(p.player))
+            p.player.deathMessage = null;
         });
       });
 
@@ -90,4 +92,8 @@ function giveRandomMafiaName(g) {
       tabMafia.push(p.username);
   });
   return tabMafia[Math.floor(Math.random() * tabMafia.length)];
+}
+
+function isGambleDeathCancelled(player) {
+  return player.pendingDeath.length > 1 && player.pendingDeath[0].type === "gamble";
 }
