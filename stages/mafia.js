@@ -57,7 +57,6 @@ module.exports = function() {
     end: function(room, callback) {
       var victim = votes.execute(room);
       room.message(""); // empty line
-
       if(victim) {
         victim.pendingDeath.push({type: "mafia"});
         room.message("mafia", "<span class='mafia-stage-action mafia-mafia-action'><span class='glyphicon glyphicon-screenshot'></span> La Mafia a décidé d'éliminer " + victim.username + "</span>");

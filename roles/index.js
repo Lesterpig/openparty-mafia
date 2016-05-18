@@ -129,6 +129,6 @@ module.exports = {
           player.setChannel("mafia", {r: true, w: true});
       }
     };
-  },
+  }
 
 };

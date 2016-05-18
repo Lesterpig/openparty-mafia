@@ -23,7 +23,7 @@ module.exports = function() {
             if (p.player.pendingDeath[0].type === "gamble" && p.player.pendingDeath.length > 1)
               p.player.deathMessage = null;
             var deathMessage = p.player.deathMessage || "✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé assassiné "+ deathPlace +"...";
-            room.message("<span class='mafia-dead-announce'>" + deathMessage + "</span>");          
+            room.message("<span class='mafia-dead-announce'>" + deathMessage + "</span>");
           }
           room.gameplay.kill(p.player);
         }
