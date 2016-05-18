@@ -3,16 +3,7 @@ module.exports = function() {
 
   return {
     start: function(room, callback) {
-      var duration = 0;
-      room.players.forEach(function(p) {
-        var r = p.player.roles;
-        if(r.dead) return;
-        for(var role in r) {
-          if(r[role].afterMafia) {
-            duration = 20;
-          }
-        }
-      });
+      var duration = isNeeded(room);
       callback(null, duration);
     },
     end: function(room, callback) {
@@ -25,3 +16,20 @@ module.exports = function() {
   };
 
 };
+
+// Check if both a victim and a rescuer are available
+function isNeeded(room) {
+  var victim = null;
+  var rescuer = null;
+  room.players.forEach(function(p) {
+    var player = p.player;
+    var deaths = player.pendingDeath;
+    if(deaths.length === 1 && deaths[0].type === "mafia" && !player.isSafeByDoc)
+      victim = p;
+    if(player.roles.rescuer && !player.roles.dead && !player.rescuerHasPlayed)
+      rescuer = p.player;
+    if (victim && rescuer)
+      break;
+  });
+  return (victim && rescuer) ? 20 : 0;
+}
