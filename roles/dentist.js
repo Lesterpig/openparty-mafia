@@ -29,6 +29,7 @@ module.exports = function() {
           choice.player.canTalk = 1;
             
           player.room.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-exclamation-sign'></span> Un dentiste a oublié " + funInstrument[GET_RANDOM(0, funInstrument.length-1)] + " dans la bouche de " + choice.username + "</span>");
+          player.roles.dentist.night = false;
         }
       }
     },
