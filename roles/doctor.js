@@ -32,8 +32,10 @@ module.exports = function() {
     beforeAll: function(room) {
       room.gameplay.events.on("beforeDawn", function() {
         room.players.forEach(function(p) {
-          if(p.player.isSafeByDoc && p.player.pendingDeath)
+          if(p.player.isSafeByDoc && p.player.pendingDeath) {
             p.player.pendingDeath.pop();
+            p.player.room.gameplay.events.emit("victimSaved", p.player);
+          }
         });
       });
 

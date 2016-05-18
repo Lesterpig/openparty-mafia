@@ -28,6 +28,8 @@ module.exports = function() {
             return;
           }
           victim.player.pendingDeath = [];
+          player.room.gameplay.events.emit("victimSaved", victim.player);
+  
           player.rescuerHasPlayed = true;
           player.sendAvailableActions();
           player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ victim.username +" a été sauvé d'une mort affreuse</span>");

@@ -128,7 +128,7 @@ module.exports = {
         if (player.roles.mafia)
           player.setChannel("mafia", {r: true, w: true});
       }
-    };      
+    };
   }
 
 };
