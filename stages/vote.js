@@ -1,6 +1,5 @@
 var votes = require("../lib/votes");
 var deathPlaces = require("../data/deathPlaces.json");
-var deathGambles = require("../data/deathGambles.json");
 
 var MAX_DURATION = 360; // 6 minutes
 
@@ -19,17 +18,13 @@ module.exports = function() {
       room.players.forEach(function(p) {
         if(p.player.pendingDeath.length > 0) {
           dead++;
-          var deathMessage;
-          if(p.player.pendingDeath[0].type === "gamble" && p.player.pendingDeath.length === 1)
-          {
-            var deathGamble = deathGambles[GET_RANDOM(0, deathGambles.length-1)];
-            deathMessage = "✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé " + deathGamble +"...";
-          } else {
-            var deathPlace = deathPlaces[GET_RANDOM(0, deathPlaces.length-1)];
-            deathMessage = p.player.deathMessage || "✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé assassiné " + deathPlace +"...";
+          var deathPlace = deathPlaces[GET_RANDOM(0, deathPlaces.length-1)];
+          if(p.player.deathMessage !== false) {
+            if (p.player.pendingDeath[0].type === "gamble" && p.player.pendingDeath.length > 1)
+              p.player.deathMessage = null;
+            var deathMessage = p.player.deathMessage || "✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé assassiné "+ deathPlace +"...";
+            room.message("<span class='mafia-dead-announce'>" + deathMessage + "</span>");          
           }
-          if(p.player.deathMessage !== false)
-            room.message("<span class='mafia-dead-announce'>" + deathMessage + "</span>");
           room.gameplay.kill(p.player);
         }
       });

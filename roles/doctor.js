@@ -34,7 +34,7 @@ module.exports = function() {
         room.players.forEach(function(p) {
           if(p.player.isSafeByDoc && p.player.pendingDeath) {
             p.player.pendingDeath.pop();
-            require("./index").lockGamblers(p.player.room, p.player);
+            p.player.room.gameplay.events.emit("victimSaved", p.player);
           }
         });
       });

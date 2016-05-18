@@ -130,14 +130,5 @@ module.exports = {
       }
     };
   },
-  
-  // Methods shared by multiple roles
-
-  lockGamblers: function(room, victim) {
-    room.players.forEach(function(p) {
-      if ((p.player.gamblerHasPlayed) && (p.player.gamble == victim))
-          p.player.gambleLocked = true;
-    });
-  }
 
 };

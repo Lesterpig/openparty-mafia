@@ -1,3 +1,5 @@
+var deathGambles = require("../data/deathGambles.json");
+
 module.exports = function() {
 
   return {
@@ -44,6 +46,29 @@ module.exports = function() {
           p.player.gamble = null;
           p.player.outcome = null;
         });
+      });
+
+      // Check gamble outcome after mafia has selected a victim
+      room.gameplay.events.on("mafiaVote", function(victim) {
+        room.players.forEach(function(p) {
+          if (p.player.gamblerHasPlayed) {
+            if (p.player.gamble == victim)
+              p.player.outcome = "win";
+            else {
+              p.player.pendingDeath.unshift({type: "gamble"});
+              var deathGamble = deathGambles[GET_RANDOM(0, deathGambles.length-1)];
+              p.player.deathMessage = "✝ " + p.username + " " + p.player.canonicalRole + " a été retrouvé " + deathGamble +"...";          
+            }
+          }
+        }); 
+      });
+      
+      // Doctor or rescuer have saved the mafia's victim : gamblers may lose their power
+      room.gameplay.events.on("victimSaved", function(victim) {
+        room.players.forEach(function(p) {
+        if ((p.player.gamblerHasPlayed) && (p.player.gamble == victim))
+          p.player.gambleLocked = true;
+        });        
       });
     }
 
