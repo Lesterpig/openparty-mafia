@@ -31,7 +31,6 @@ module.exports = function() {
           player.rescuerHasPlayed = true;
           player.sendAvailableActions();
           player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-heart-empty'></span> "+ victim.username +" a été sauvé d'une mort affreuse</span>");
-          player.roles.rescuer.night = null;
         }
       }
     },

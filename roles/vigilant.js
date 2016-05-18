@@ -23,7 +23,7 @@ module.exports = function() {
           choice.player.pendingDeath.push({type: "vigilant"});
           player.sendAvailableActions();
           player.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-screenshot'></span> Vous avez décidé d'assassiner "+ choice.username +" cette nuit</span>");
-          player.roles.vigilant.night = null;
+          player.roles.vigilant.night = false;
         }
       }
     },
