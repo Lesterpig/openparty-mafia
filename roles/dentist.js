@@ -5,6 +5,7 @@ module.exports = function() {
     name: "Dentiste",
     desc: "Vous pouvez interdire à une personne de parler au prochain tour <strong>une fois par partie</strong>. Vous devez aider les villageois à repousser la Mafia...",
     side: "village",
+    night: true,
 
     actions: {
       mute: {
@@ -28,6 +29,7 @@ module.exports = function() {
           choice.player.canTalk = 1;
             
           player.room.message("<span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-exclamation-sign'></span> Un dentiste a oublié " + funInstrument[GET_RANDOM(0, funInstrument.length-1)] + " dans la bouche de " + choice.username + "</span>");
+          player.roles.dentist.night = null;
         }
       }
     },
