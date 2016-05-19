@@ -15,7 +15,6 @@ module.exports = {
     room.gameplay.gamemaster = undefined;
 
     room.gameplay.parameters.forEach(function(p) {
-
       // Various parameters registration
 
       if(p.gamemasterMode && p.value) {
@@ -111,7 +110,7 @@ module.exports = {
       player.setChannel("village", {r: true, w: false});
       player.setChannel("mafia", {r: false, w: false});
     };
-      
+
     room.gameplay.mute = function(player) {
       if (!player.roles.dead) {
         // Disable channels
@@ -120,7 +119,7 @@ module.exports = {
           player.setChannel("mafia", {r: true, w: false});
       }
     };
-      
+
     room.gameplay.unmute = function(player) {
       if (!player.roles.dead) {
         // Enable channels

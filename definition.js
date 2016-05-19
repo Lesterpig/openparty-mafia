@@ -45,19 +45,16 @@ module.exports = function() {
       return callback(e.message);
     }
 
-    room.broadcast('playSound', 'start');
+    room.broadcast("playSound", "start");
     callback(null);
 
-    // TODO See #16
     setTimeout(function() {
-
       room.message("<strong><i>Vous vous trouvez dans le village de Salem. La Mafia rôde, et menace sérieusement la vie des villageois...</i></strong>");
 
       if(!room.gameplay.gamemasterMode)
         room.nextStage("mafia");
       else
         room.nextStage("wait");
-
     }, 100);
 
   };
@@ -153,17 +150,27 @@ module.exports = function() {
 
   // Disconnect
 
+  this.onReconnect = function(room, player) {
+    // Resend role and players
+    player.emit("setGameInfo", "Vous êtes "+ player.canonicalRole +". Vous avez été absent pendant un court instant, l'historique n'est pas totalement disponible.");
+    room.gameplay.resetPlayerInfo();
+
+    // Refresh gamemaster private channels
+    if(!player.roles.gamemaster && room.gameplay.gamemasterMode) {
+      room.gameplay.processUserForGamemaster(player.socket);
+    }
+  }
+
   this.onDisconnect = function(room, player) {
 
     if(player.roles && player.roles.gamemaster) { // TODO : move this is gamemaster.js file
-
       room.gameplay.gamemasterMode = false;
       room.gameplay.gamemaster     = null;
       room.gameplay.disableAutoVictory = false;
 
       if(room.getRemainingTime() == Number.POSITIVE_INFINITY) // to avoid infinite stages
         room.setStageDuration(0);
-        
+
       if(room.currentStage === "wait")
         room.endStage();
 
