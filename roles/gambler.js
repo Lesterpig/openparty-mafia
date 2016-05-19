@@ -80,7 +80,8 @@ module.exports = function() {
 
 function rewardGambler(player) {
   var name = giveRandomMafiaName(player);
-  player.message("<span class='mafia-dead-announce'><span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-tags'></span>&nbsp; Pari gagné</span> Vous découvrez que <span class='mafia-stage-action mafia-mafia-action'>" + name + "</span> est dans la Mafia.</span>");
+  if (name)
+    player.message("<span class='mafia-dead-announce'><span class='mafia-stage-action mafia-role-action'><span class='glyphicon glyphicon-tags'></span>&nbsp; Pari gagné</span> Vous découvrez que <span class='mafia-stage-action mafia-mafia-action'>" + name + "</span> est dans la Mafia.</span>");
   if (player.gambleLocked)
     player.message("<span class='mafia-dead-announce'>Votre chance a tourné et vous ne pouvez plus parier.</span>");
 }
@@ -88,10 +89,12 @@ function rewardGambler(player) {
 function giveRandomMafiaName(g) {
   var tabMafia = [];
   g.room.players.forEach(function (p) {
-    if (p.player.roles.mafia || p.player.roles.godfather || p.player.roles.terrorist)
+    if (!p.player.roles.dead && p.player.pendingDeath.length === 0 && (p.player.roles.mafia || p.player.roles.godfather || p.player.roles.terrorist))
       tabMafia.push(p.username);
   });
-  return tabMafia[Math.floor(Math.random() * tabMafia.length)];
+  if (tabMafia.length > 0)
+    return tabMafia[Math.floor(Math.random() * tabMafia.length)];
+  return null;
 }
 
 function isGambleDeathCancelled(player) {
